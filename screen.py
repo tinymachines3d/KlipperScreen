@@ -26,9 +26,6 @@ from ks_includes.config import KlipperScreenConfig
 from panels.base_panel import BasePanel
 
 logging.getLogger("urllib3").setLevel(logging.WARNING)
-logging.getLogger('matplotlib').setLevel(logging.WARNING)
-# This is here to avoid performance issues opening bed_mesh
-import matplotlib.pyplot  # noqa
 
 PRINTER_BASE_STATUS_OBJECTS = [
     'bed_mesh',
@@ -50,6 +47,21 @@ PRINTER_BASE_STATUS_OBJECTS = [
 ]
 
 klipperscreendir = pathlib.Path(__file__).parent.resolve()
+
+
+def set_text_direction(lang=None):
+    rtl_languages = ['he_IL']
+    if lang is None:
+        for lng in rtl_languages:
+            if os.getenv('LANG').startswith(lng):
+                lang = lng
+                break
+    if lang in rtl_languages:
+        Gtk.Widget.set_default_direction(Gtk.TextDirection.RTL)
+        logging.debug("Enabling RTL mode")
+        return False
+    Gtk.Widget.set_default_direction(Gtk.TextDirection.LTR)
+    return True
 
 
 class KlipperScreen(Gtk.Window):
@@ -93,7 +105,7 @@ class KlipperScreen(Gtk.Window):
         configfile = os.path.normpath(os.path.expanduser(args.configfile))
 
         self._config = KlipperScreenConfig(configfile, self)
-        self.lang_ltr = self.set_text_direction(self._config.get_main_config().get("language", None))
+        self.lang_ltr = set_text_direction(self._config.get_main_config().get("language", None))
 
         Gtk.Window.__init__(self)
         self.set_title("KlipperScreen")
@@ -107,8 +119,8 @@ class KlipperScreen(Gtk.Window):
         self.vertical_mode = self.width < self.height
         logging.info(f"Screen resolution: {self.width}x{self.height}")
         self.theme = self._config.get_main_config().get('theme')
-        self.show_cursor = self._config.get_main_config().getboolean("show_cursor", fallback=False)
-        self.gtk = KlippyGtk(self, self.width, self.height, self.theme, self.show_cursor,
+        show_cursor = self._config.get_main_config().getboolean("show_cursor", fallback=False)
+        self.gtk = KlippyGtk(self, self.width, self.height, self.theme, show_cursor,
                              self._config.get_main_config().get("font_size", "medium"))
         self.init_style()
         self.set_icon_from_file(os.path.join(klipperscreendir, "styles", "icon.svg"))
@@ -116,6 +128,12 @@ class KlipperScreen(Gtk.Window):
         self.base_panel = BasePanel(self, title="Base Panel", back=False)
         self.add(self.base_panel.get())
         self.show_all()
+        if show_cursor:
+            self.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.ARROW))
+            os.system("xsetroot  -cursor_name  arrow")
+        else:
+            self.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.BLANK_CURSOR))
+            os.system("xsetroot  -cursor ks_includes/emptyCursor.xbm ks_includes/emptyCursor.xbm")
         self.base_panel.activate()
 
         self.printer_initializing(_("Initializing"))
@@ -125,9 +143,6 @@ class KlipperScreen(Gtk.Window):
             self.dialogs = []
         self.set_screenblanking_timeout(self._config.get_main_config().get('screen_blanking'))
 
-        # Move mouse to 0,0
-        os.system("/usr/bin/xdotool mousemove 0 0")
-        self.change_cursor()
         self.initial_connection()
 
     def initial_connection(self):
@@ -812,23 +827,9 @@ class KlipperScreen(Gtk.Window):
     def toggle_macro_shortcut(self, value):
         self.base_panel.show_macro_shortcut(value)
 
-    def set_text_direction(self, lang=None):
-        rtl_languages = ['he_IL']
-        if lang is None:
-            for lng in rtl_languages:
-                if os.getenv('LANG').startswith(lng):
-                    lang = lng
-                    break
-        if lang in rtl_languages:
-            Gtk.Widget.set_default_direction(Gtk.TextDirection.RTL)
-            logging.debug("Enabling RTL mode")
-            return False
-        Gtk.Widget.set_default_direction(Gtk.TextDirection.LTR)
-        return True
-
     def change_language(self, lang):
         self._config.install_language(lang)
-        self.lang_ltr = self.set_text_direction(lang)
+        self.lang_ltr = set_text_direction(lang)
         self._config._create_configurable_options(self)
         self.reload_panels()
 
@@ -934,7 +935,7 @@ class KlipperScreen(Gtk.Window):
             self.panels['splash_screen'].update_text(text)
 
     def search_power_devices(self, power_devices):
-        if self.connected_printer is None:
+        if self.connected_printer is None or not power_devices:
             return
         found_devices = []
         devices = self.printer.get_power_devices()
@@ -948,7 +949,7 @@ class KlipperScreen(Gtk.Window):
             logging.info("Found %s", found_devices)
             return found_devices
         else:
-            logging.info("Power devices not found")
+            logging.info("Associated power devices not found")
             return None
 
     def power_on(self, widget, devices):
@@ -1106,17 +1107,6 @@ class KlipperScreen(Gtk.Window):
             os.kill(self.keyboard['process'].pid, signal.SIGTERM)
         self.base_panel.get_content().remove(self.keyboard['box'])
         self.keyboard = None
-
-    def change_cursor(self, cursortype=None):
-        if cursortype == "watch":
-            os.system("xsetroot  -cursor_name  watch")
-        elif self.show_cursor:
-            self.get_window().set_cursor(Gdk.Cursor(Gdk.CursorType.ARROW))
-            os.system("xsetroot  -cursor_name  arrow")
-        else:
-            self.get_window().set_cursor(Gdk.Cursor(Gdk.CursorType.BLANK_CURSOR))
-            os.system("xsetroot  -cursor ks_includes/emptyCursor.xbm ks_includes/emptyCursor.xbm")
-        return
 
 
 def main():
