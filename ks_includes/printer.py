@@ -1,8 +1,9 @@
-import gi
 import logging
 
+import gi
+
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gdk, GLib
+from gi.repository import GLib
 
 
 class Printer:
@@ -21,6 +22,8 @@ class Printer:
         self.output_pin_count = 0
         self.store_timeout = None
         self.tempstore = {}
+        self.busy_cb = None
+        self.busy = None
 
     def reset(self):
         self.config = None
@@ -37,6 +40,8 @@ class Printer:
         self.output_pin_count = None
         self.store_timeout = None
         self.tempstore = None
+        self.busy_cb = None
+        self.busy = None
 
     def reinit(self, printer_info, data):
         self.config = data['configfile']['config']
@@ -48,6 +53,7 @@ class Printer:
         self.fancount = 0
         self.output_pin_count = 0
         self.tempstore = {}
+        self.busy = False
         if not self.store_timeout:
             self.store_timeout = GLib.timeout_add_seconds(1, self._update_temp_store)
 
@@ -105,21 +111,30 @@ class Printer:
                 self.data[x] = {}
             self.data[x].update(data[x])
 
-        if "webhooks" in data or "print_stats" in data:
+        if "webhooks" in data or "print_stats" in data or "idle_timeout" in data:
             self.process_status_update()
 
     def evaluate_state(self):
         # webhooks states: startup, ready, shutdown, error
         # print_stats: standby, printing, paused, error, complete
+        # idle_timeout: Idle, Printing, Ready
         if self.data['webhooks']['state'] == "ready" and self.data['print_stats']:
             if self.data['print_stats']['state'] == 'paused' or self.data.get('pause_resume').get('is_paused'):
                 return "paused"
             if self.data['print_stats']['state'] == 'printing':
                 return "printing"
+            if self.data['idle_timeout'] and self.data['idle_timeout']['state'].lower() == "printing":
+                return "busy"
         return self.data['webhooks']['state']
 
     def process_status_update(self):
         state = self.evaluate_state()
+        if state == "busy":
+            self.busy = True
+            return GLib.idle_add(self.busy_cb, True)
+        if self.busy:
+            self.busy = False
+            GLib.idle_add(self.busy_cb, False)
         if state != self.state:
             self.change_state(state)
 
@@ -128,8 +143,8 @@ class Printer:
             self.power_devices[data['device']]['status'] = data['status']
 
     def change_state(self, state):
-        if state not in list(self.state_callbacks):  # disconnected, startup, ready, shutdown, error, paused, printing
-            return
+        if state not in list(self.state_callbacks):
+            return  # disconnected, startup, ready, shutdown, error, paused, printing
         if state != self.state:
             logging.debug(f"Changing state from '{self.state}' to '{state}'")
             self.state = state
@@ -186,6 +201,14 @@ class Printer:
         sensors.extend(iter(self.get_config_section_list("filament_motion_sensor ")))
         return sensors
 
+    def get_probe(self):
+        probe_types = ["probe", "bltouch", "smart_effector", "dockable_probe"]
+        for probe_type in probe_types:
+            if self.config_section_exists(probe_type):
+                logging.info(f"Probe type: {probe_type}")
+                return self.get_config_section(probe_type)
+        return None
+
     def get_printer_status_data(self):
         data = {
             "printer": {
@@ -231,11 +254,12 @@ class Printer:
             return self.devices[dev][stat]
         return None
 
-    def get_fan_speed(self, fan="fan", speed=None):
+    def get_fan_speed(self, fan="fan"):
+        speed = 0
         if fan not in self.config or fan not in self.data:
             logging.debug(f"Error getting {fan} config")
-            return speed if speed is not None else 0
-        if speed is None and "speed" in self.data[fan]:
+            return speed
+        if "speed" in self.data[fan]:
             speed = self.data[fan]["speed"]
         if 'max_power' in self.config[fan]:
             max_power = float(self.config[fan]['max_power'])

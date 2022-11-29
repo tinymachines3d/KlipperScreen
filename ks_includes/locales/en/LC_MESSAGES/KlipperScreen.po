@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KlipperScreen\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-12 11:20-0300\n"
+"POT-Creation-Date: 2022-11-28 11:57-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -39,9 +39,6 @@ msgid "Accept"
 msgstr ""
 
 msgid "Actions"
-msgstr ""
-
-msgid "Add Printer"
 msgstr ""
 
 msgid "Add profile"
@@ -107,9 +104,6 @@ msgid "Calibrated, save configuration to make it permanent"
 msgstr ""
 
 msgid "Calibrating"
-msgstr ""
-
-msgid "Calibrating..."
 msgstr ""
 
 msgid "Can't set above the maximum:"
@@ -205,6 +199,9 @@ msgid "Estimated Time Method"
 msgstr ""
 
 msgid "Exclude Object"
+msgstr ""
+
+msgid "Extra Large"
 msgstr ""
 
 msgid "Extrude"
@@ -312,9 +309,6 @@ msgstr ""
 msgid "Increase"
 msgstr ""
 
-msgid "Initializing"
-msgstr ""
-
 msgid "Initializing printer..."
 msgstr ""
 
@@ -325,6 +319,9 @@ msgid "Interface"
 msgstr ""
 
 msgid "Invalid"
+msgstr ""
+
+msgid "Invalid password"
 msgstr ""
 
 msgid "Invert X"
@@ -352,6 +349,9 @@ msgid "Klipper is attempting to start"
 msgstr ""
 
 msgid "Klipper will reboot"
+msgstr ""
+
+msgid "KlipperScreen will reboot"
 msgstr ""
 
 msgid "Language"
@@ -394,6 +394,9 @@ msgid "Max Acceleration to Deceleration"
 msgstr ""
 
 msgid "Max Velocity"
+msgstr ""
+
+msgid "Maximum"
 msgstr ""
 
 msgid "Measure Both"
@@ -515,6 +518,9 @@ msgstr ""
 msgid "Profile Name:"
 msgstr ""
 
+msgid "Provide KlipperScreen.log when asking for help.\n"
+msgstr ""
+
 msgid "Quad Gantry Level"
 msgstr ""
 
@@ -552,10 +558,6 @@ msgid "Retraction Speed"
 msgstr ""
 
 msgid "Retry"
-msgstr ""
-
-#, python-format
-msgid "Retry #%s"
 msgstr ""
 
 msgid "Retrying"
@@ -629,9 +631,6 @@ msgstr ""
 msgid "Small"
 msgstr ""
 
-msgid "Sort:"
-msgstr ""
-
 msgid "Speed (mm/s)"
 msgstr ""
 
@@ -674,10 +673,6 @@ msgstr ""
 msgid "Temperature"
 msgstr ""
 
-#, python-format
-msgid "To apply %s KlipperScreen needs to be restarted"
-msgstr ""
-
 msgid "Total:"
 msgstr ""
 
@@ -708,22 +703,10 @@ msgstr ""
 msgid "Uploaded"
 msgstr ""
 
-msgid "X+"
-msgstr ""
-
-msgid "X-"
-msgstr ""
-
 msgid "XY Move Speed (mm/s)"
 msgstr ""
 
 msgid "XY Speed (mm/s)"
-msgstr ""
-
-msgid "Y+"
-msgstr ""
-
-msgid "Y-"
 msgstr ""
 
 msgid "Z Calibrate"
@@ -739,12 +722,6 @@ msgid "Z Tilt"
 msgstr ""
 
 msgid "Z offset:"
-msgstr ""
-
-msgid "Z+"
-msgstr ""
-
-msgid "Z-"
 msgstr ""
 
 msgid "commit"

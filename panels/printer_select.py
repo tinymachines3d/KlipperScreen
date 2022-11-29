@@ -10,8 +10,8 @@ def create_panel(*args):
 
 
 class PrinterSelect(ScreenPanel):
-    def __init__(self, screen, title, back=True):
-        super().__init__(screen, title, False)
+    def __init__(self, screen, title):
+        super().__init__(screen, title)
         printers = self._config.get_printers()
 
         grid = self._gtk.HomogeneousGrid()
@@ -32,7 +32,7 @@ class PrinterSelect(ScreenPanel):
 
         for i, printer in enumerate(printers):
             name = list(printer)[0]
-            self.labels[name] = self._gtk.ButtonImage("extruder", name, f"color{1 + i % 4}")
+            self.labels[name] = self._gtk.Button("extruder", name, f"color{1 + i % 4}")
             self.labels[name].connect("clicked", self.connect_printer, name)
             if self._screen.vertical_mode:
                 row = i % columns
@@ -47,5 +47,6 @@ class PrinterSelect(ScreenPanel):
 
     def activate(self):
         self._screen.base_panel.action_bar.hide()
-        self._screen._ws.connecting = False
         GLib.timeout_add(100, self._screen.base_panel.action_bar.hide)
+        if self._screen._ws:
+            self._screen._ws.connecting = False

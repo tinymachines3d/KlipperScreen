@@ -1,5 +1,4 @@
 import gi
-import logging
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Pango
@@ -12,8 +11,8 @@ def create_panel(*args):
 
 
 class SettingsPanel(ScreenPanel):
-    def __init__(self, screen, title, back=True):
-        super().__init__(screen, title, back)
+    def __init__(self, screen, title):
+        super().__init__(screen, title)
         self.printers = self.settings = {}
         self.menu = ['settings_menu']
         options = self._config.get_configurable_options().copy()
@@ -34,7 +33,6 @@ class SettingsPanel(ScreenPanel):
         self.labels['printers'] = Gtk.Grid()
         self.labels['printers_menu'].add(self.labels['printers'])
         for printer in self._config.get_printers():
-            logging.debug(f"Printer: {printer}")
             pname = list(printer)[0]
             self.printers[pname] = {
                 "name": pname,
@@ -60,10 +58,6 @@ class SettingsPanel(ScreenPanel):
     def add_option(self, boxname, opt_array, opt_name, option):
         if option['type'] is None:
             return
-
-        frame = Gtk.Frame()
-        frame.get_style_context().add_class("frame-item")
-
         name = Gtk.Label()
         name.set_markup(f"<big><b>{option['name']}</b></big>")
         name.set_hexpand(True)
@@ -77,6 +71,7 @@ class SettingsPanel(ScreenPanel):
         labels.add(name)
 
         dev = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=5)
+        dev.get_style_context().add_class("frame-item")
         dev.set_hexpand(True)
         dev.set_vexpand(False)
         dev.set_valign(Gtk.Align.CENTER)
@@ -121,18 +116,15 @@ class SettingsPanel(ScreenPanel):
             box.add(label)
             dev.add(box)
         elif option['type'] == "menu":
-            open_menu = self._gtk.ButtonImage("settings", style="color3")
-            open_menu.connect("clicked", self.load_menu, option['menu'])
+            open_menu = self._gtk.Button("settings", style="color3")
+            open_menu.connect("clicked", self.load_menu, option['menu'], option['name'])
             open_menu.set_hexpand(False)
             open_menu.set_halign(Gtk.Align.END)
             dev.add(open_menu)
 
-        frame.add(dev)
-        frame.show_all()
-
         opt_array[opt_name] = {
             "name": option['name'],
-            "row": frame
+            "row": dev
         }
 
         opts = sorted(list(opt_array), key=lambda x: opt_array[x]['name'])

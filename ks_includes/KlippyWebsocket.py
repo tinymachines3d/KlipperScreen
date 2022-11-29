@@ -1,30 +1,15 @@
 #!/usr/bin/python
 
-import gi
 import threading
-
 import json
-import websocket
 import logging
+
+import gi
+import websocket
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import GLib
 from ks_includes.KlippyGcodes import KlippyGcodes
-
-api_key = ""
-
-api = {
-    "printer_info": {
-        "url": "/printer/info",
-        "method": "get_printer_info"
-    },
-    "apikey": {
-        "url": "/access/api_key"
-    },
-    "oneshot_token": {
-        "url": "/access/oneshot_token"
-    }
-}
 
 
 class KlippyWebsocket(threading.Thread):
@@ -42,9 +27,8 @@ class KlippyWebsocket(threading.Thread):
         self._screen = screen
         self._callback = callback
         self.klippy = MoonrakerApi(self)
-        self.closing = False
         self.ws = None
-
+        self.closing = False
         self.host = host
         self.port = port
 
@@ -78,8 +62,7 @@ class KlippyWebsocket(threading.Thread):
             if state is False:
                 if self.reconnect_count > 2:
                     self._screen.printer_initializing(
-                        _("Cannot connect to Moonraker")
-                        + f'\n\n{self._url}\n\n'
+                        _("Cannot connect to Moonraker") + '\n\n'
                         + _("Retrying") + f' #{self.reconnect_count}'
                     )
                 return False
@@ -106,10 +89,10 @@ class KlippyWebsocket(threading.Thread):
         self.closing = True
         self.connecting = False
         if self.ws is not None:
-            logging.debug("Closing websocket")
             self.ws.close()
 
-    def on_message(self, ws, message):
+    def on_message(self, *args):
+        message = args[1] if len(args) == 2 else args[0]
         response = json.loads(message)
         if "id" in response and response['id'] in self.callback_table:
             args = (response,
@@ -144,23 +127,31 @@ class KlippyWebsocket(threading.Thread):
         self.ws.send(json.dumps(data))
         return True
 
-    def on_open(self, ws):
+    def on_open(self, *args):
         logging.info("Moonraker Websocket Open")
         self.connected = True
+        self._screen.reinit_count = 0
         self.reconnect_count = 0
         if "on_connect" in self._callback:
             GLib.idle_add(self._callback['on_connect'])
 
-    def on_close(self, ws, status, message):
+    def on_close(self, *args):
+        # args: ws, status, message
+        # sometimes ws is not passed due to bugs
+        message = args[2] if len(args) == 3 else args[1]
         if message is not None:
-            logging.info(f"{status} {message}")
+            logging.info(f"{message}")
         if not self.connected:
             logging.debug("Connection already closed")
             return
-
+        if self.closing:
+            logging.debug("Closing websocket")
+            self.ws.keep_running = False
+            self.close()
+            self.closing = False
+            return
         if "on_close" in self._callback:
             GLib.idle_add(self._callback['on_close'], "Lost Connection to Moonraker")
-
         logging.info("Moonraker Websocket Closed")
         self.connected = False
 
@@ -172,14 +163,15 @@ class KlippyWebsocket(threading.Thread):
             self.connecting = False
             self._screen.printer_initializing(
                 _("Cannot connect to Moonraker")
-                + f'\n\n{self._url}')
+                + f'\n\n{self._screen.apiclient.status}')
             return False
         logging.debug("Attempting to reconnect")
         self.connect()
         return True
 
     @staticmethod
-    def on_error(ws, error):
+    def on_error(*args):
+        error = args[1] if len(args) == 2 else args[0]
         logging.debug(f"Websocket error: {error}")
 
 

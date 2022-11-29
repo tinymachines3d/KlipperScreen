@@ -1,5 +1,6 @@
-import gi
 import logging
+
+import gi
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Pango
@@ -13,8 +14,8 @@ def create_panel(*args):
 
 class LimitsPanel(ScreenPanel):
 
-    def __init__(self, screen, title, back=True):
-        super().__init__(screen, title, back)
+    def __init__(self, screen, title):
+        super().__init__(screen, title)
         self.limits = {}
         self.options = None
         self.values = {}
@@ -93,7 +94,7 @@ class LimitsPanel(ScreenPanel):
         scale.connect("button-release-event", self.set_opt_value, option)
         self.values[option] = value
 
-        reset = self._gtk.ButtonImage("refresh", style="color1")
+        reset = self._gtk.Button("refresh", style="color1")
         reset.connect("clicked", self.reset_value, option)
         reset.set_hexpand(False)
 
@@ -102,12 +103,8 @@ class LimitsPanel(ScreenPanel):
         item.attach(scale, 0, 1, 1, 1)
         item.attach(reset, 1, 1, 1, 1)
 
-        frame = Gtk.Frame()
-        frame.get_style_context().add_class("frame-item")
-        frame.add(item)
-
         self.limits[option] = {
-            "row": frame,
+            "row": item,
             "scale": scale,
             "adjustment": adj,
         }

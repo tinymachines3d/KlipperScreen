@@ -6,10 +6,9 @@ import json
 import re
 import copy
 import pathlib
+import locale
 
 from io import StringIO
-
-from os import path
 
 SCREEN_BLANKING_OPTIONS = [
     300,  # 5 Minutes
@@ -115,15 +114,21 @@ class KlipperScreenConfig:
             self.langs[lng] = gettext.translation('KlipperScreen', localedir=lang_path, languages=[lng], fallback=True)
 
         lang = self.get_main_config().get("language", None)
-        logging.debug(f"Selected lang: {lang} OS lang: {os.getenv('LANG')}")
+        logging.debug(f"Selected lang: {lang} OS lang: {locale.getdefaultlocale()[0]}")
         self.install_language(lang)
 
     def install_language(self, lang):
         if lang is None or lang == "system_lang":
             for language in self.lang_list:
-                if os.getenv('LANG').lower().startswith(language):
+                if locale.getdefaultlocale()[0].startswith(language):
                     logging.debug("Using system lang")
                     lang = language
+        if lang is not None and lang not in self.lang_list:
+            # try to match a parent
+            for language in self.lang_list:
+                if lang.startswith(language):
+                    lang = language
+                    self.set("main", "language", lang)
         if lang not in self.lang_list:
             logging.error(f"lang: {lang} not found")
             logging.info(f"Available lang list {self.lang_list}")
@@ -218,7 +223,7 @@ class KlipperScreenConfig:
                     {"name": _("System") + " " + _("(default)"), "value": "system_lang"}]}},
             {"theme": {
                 "section": "main", "name": _("Icon Theme"), "type": "dropdown",
-                "value": "z-bolt", "callback": screen.restart_warning, "options": [
+                "value": "z-bolt", "callback": screen.restart_ks, "options": [
                     {"name": "Z-bolt" + " " + _("(default)"), "value": "z-bolt"}]}},
             {"print_estimate_method": {
                 "section": "main", "name": _("Estimated Time Method"), "type": "dropdown",
@@ -238,10 +243,12 @@ class KlipperScreenConfig:
                 "value": "True", "callback": screen.toggle_macro_shortcut}},
             {"font_size": {
                 "section": "main", "name": _("Font Size"), "type": "dropdown",
-                "value": "medium", "callback": screen.restart_warning, "options": [
+                "value": "medium", "callback": screen.restart_ks, "options": [
                     {"name": _("Small"), "value": "small"},
                     {"name": _("Medium") + " " + _("(default)"), "value": "medium"},
-                    {"name": _("Large"), "value": "large"}]}},
+                    {"name": _("Large"), "value": "large"},
+                    {"name": _("Extra Large"), "value": "extralarge"},
+                    {"name": _("Maximum"), "value": "max"}]}},
             {"confirm_estop": {"section": "main", "name": _("Confirm Emergency Stop"), "type": "binary",
                                "value": "False"}},
             {"only_heaters": {"section": "main", "name": _("Hide sensors in Temp."), "type": "binary",
@@ -350,7 +357,7 @@ class KlipperScreenConfig:
         user_def = []
         saved_def = []
         found_saved = False
-        if not path.exists(config_path):
+        if not os.path.exists(config_path):
             return ["", None]
         with open(config_path) as file:
             for line in file:
@@ -367,31 +374,32 @@ class KlipperScreenConfig:
 
     def get_config_file_location(self, file):
         # Passed config (-c) by default is ~/KlipperScreen.conf
-        if path.exists(file):
+        logging.info(f"Passed config (-c): {file}")
+        if os.path.exists(file):
             return file
 
         file = os.path.join(klipperscreendir, self.configfile_name)
-        if path.exists(file):
+        if os.path.exists(file):
             return file
         file = os.path.join(klipperscreendir, self.configfile_name.lower())
-        if path.exists(file):
+        if os.path.exists(file):
             return file
 
         klipper_config = os.path.join(os.path.expanduser("~/"), "printer_data", "config")
         file = os.path.join(klipper_config, self.configfile_name)
-        if path.exists(file):
+        if os.path.exists(file):
             return file
         file = os.path.join(klipper_config, self.configfile_name.lower())
-        if path.exists(file):
+        if os.path.exists(file):
             return file
 
         # OLD config folder
         klipper_config = os.path.join(os.path.expanduser("~/"), "klipper_config")
         file = os.path.join(klipper_config, self.configfile_name)
-        if path.exists(file):
+        if os.path.exists(file):
             return file
         file = os.path.join(klipper_config, self.configfile_name.lower())
-        if path.exists(file):
+        if os.path.exists(file):
             return file
 
         # fallback
@@ -486,20 +494,21 @@ class KlipperScreenConfig:
                     f"{self.do_not_edit_line}\n"
                     f"{self.do_not_edit_prefix}\n"
                     + '\n'.join(save_output) + f"\n"
-                    f"{self.do_not_edit_prefix}\n")
+                                               f"{self.do_not_edit_prefix}\n")
 
         if self.config_path != self.default_config_path:
             filepath = self.config_path
         else:
             filepath = os.path.expanduser("~/")
-            klipper_config = os.path.join(filepath, "klipper_config")
-            if os.path.exists(klipper_config):
-                filepath = os.path.join(klipper_config, "KlipperScreen.conf")
             klipper_config = os.path.join(filepath, "printer_data", "config")
+            old_klipper_config = os.path.join(filepath, "klipper_config")
             if os.path.exists(klipper_config):
-                filepath = os.path.join(klipper_config, "KlipperScreen.conf")
+                filepath = os.path.join(klipper_config, self.configfile_name)
+            elif os.path.exists(old_klipper_config):
+                filepath = os.path.join(old_klipper_config, self.configfile_name)
             else:
-                filepath = os.path.join(filepath, "KlipperScreen.conf")
+                filepath = os.path.join(filepath, self.configfile_name)
+            logging.info(f'Creating a new config file in {filepath}')
 
         try:
             with open(filepath, 'w') as file:
