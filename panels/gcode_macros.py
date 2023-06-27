@@ -19,11 +19,13 @@ class MacroPanel(ScreenPanel):
         self.sort_btn = self._gtk.Button("arrow-up", _("Name"), "color1", self.bts, Gtk.PositionType.RIGHT, 1)
         self.sort_btn.connect("clicked", self.change_sort)
         self.sort_btn.set_hexpand(True)
+        self.sort_btn.get_style_context().add_class("buttons_slim")
         self.options = {}
         self.macros = {}
         self.menu = ['macros_menu']
 
         adjust = self._gtk.Button("settings", " " + _("Settings"), "color2", self.bts, Gtk.PositionType.LEFT, 1)
+        adjust.get_style_context().add_class("buttons_slim")
         adjust.connect("clicked", self.load_menu, 'options', _("Settings"))
         adjust.set_hexpand(False)
 
@@ -116,6 +118,7 @@ class MacroPanel(ScreenPanel):
             value = self.macros[macro]["params"][param].get_text()
             if value:
                 params += f'{param}={value} '
+        self._screen.show_popup_message(f"{macro} {params}", 1)
         self._screen._ws.klippy.gcode_script(f"{macro} {params}")
 
     def change_sort(self, widget):
@@ -134,6 +137,7 @@ class MacroPanel(ScreenPanel):
         self.options = {}
         self.labels['options'].remove_column(0)
         self.load_gcode_macros()
+        return False
 
     def load_gcode_macros(self):
         for macro in self._printer.get_gcode_macros():

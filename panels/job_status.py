@@ -425,6 +425,7 @@ class JobStatusPanel(ScreenPanel):
 
     def restart(self, widget):
         if self.filename != "none":
+            self.disable_button("restart")
             if self.state == "error":
                 script = {"script": "SDCARD_RESET_FILE"}
                 self._screen._send_action(None, "printer.gcode.script", script)
@@ -432,11 +433,12 @@ class JobStatusPanel(ScreenPanel):
             self.new_print()
 
     def resume(self, widget):
-        self._screen._ws.klippy.print_resume(self._response_callback, "enable_button", "pause", "cancel")
+        self._screen._ws.klippy.print_resume()
         self._screen.show_all()
 
     def pause(self, widget):
-        self._screen._ws.klippy.print_pause(self._response_callback, "enable_button", "resume", "cancel")
+        self.disable_button("pause", "resume")
+        self._screen._ws.klippy.print_pause()
         self._screen.show_all()
 
     def cancel(self, widget):
@@ -469,17 +471,12 @@ class JobStatusPanel(ScreenPanel):
         logging.debug("Canceling print")
         self.set_state("cancelling")
         self.disable_button("pause", "resume", "cancel")
-        self._screen._ws.klippy.print_cancel(self._response_callback)
-
-    def _response_callback(self, response, method, params, func=None, *args):
-        if func == "enable_button":
-            self.enable_button(*args)
+        self._screen._ws.klippy.print_cancel()
 
     def close_panel(self, widget=None):
         if self.can_close:
             logging.debug("Closing job_status panel")
-            self._screen.printer_ready()
-            self._printer.change_state("ready")
+            self._screen.state_ready(wait=False)
 
     def enable_button(self, *args):
         for arg in args:
@@ -558,7 +555,7 @@ class JobStatusPanel(ScreenPanel):
                 self.req_speed = round(float(data["gcode_move"]["speed"]) / 60 * self.speed_factor)
                 self.labels['req_speed'].set_label(
                     f"{self.speed}% {self.vel:3.0f}/{self.req_speed:3.0f} "
-                    f"{f'{self.mms}' if self.vel < 1000 and self.req_speed < 1000 and self._screen.width > 480 else ''}"
+                    f"{f'{self.mms}' if self.vel < 1000 and self.req_speed < 1000 and self._screen.width > 500 else ''}"
                 )
                 self.buttons['speed'].set_label(self.labels['req_speed'].get_label())
             with contextlib.suppress(KeyError):
@@ -581,7 +578,7 @@ class JobStatusPanel(ScreenPanel):
                 self.vel = float(data["motion_report"]["live_velocity"])
                 self.labels['req_speed'].set_label(
                     f"{self.speed}% {self.vel:3.0f}/{self.req_speed:3.0f} "
-                    f"{f'{self.mms}' if self.vel < 1000 and self.req_speed < 1000 and self._screen.width > 480 else ''}"
+                    f"{f'{self.mms}' if self.vel < 1000 and self.req_speed < 1000 and self._screen.width > 500 else ''}"
                 )
                 self.buttons['speed'].set_label(self.labels['req_speed'].get_label())
             with contextlib.suppress(KeyError):
@@ -764,6 +761,9 @@ class JobStatusPanel(ScreenPanel):
 
             if self.filename is not None:
                 self.buttons['button_grid'].attach(self.buttons['restart'], 2, 0, 1, 1)
+                self.enable_button("restart")
+            else:
+                self.disable_button("restart")
             if self.state != "cancelling":
                 self.buttons['button_grid'].attach(self.buttons['menu'], 3, 0, 1, 1)
                 self.can_close = True
