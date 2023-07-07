@@ -27,6 +27,7 @@ class MainPanel(MenuPanel):
         self.main_menu.set_hexpand(True)
         self.main_menu.set_vexpand(True)
         self.graph_retry = 0
+        scroll = self._gtk.ScrolledWindow()
 
         logging.info("### Making MainMenu")
 
@@ -36,14 +37,20 @@ class MainPanel(MenuPanel):
             self.main_menu.attach(self.create_left_panel(), 0, 0, 1, 1)
         if self._screen.vertical_mode:
             self.labels['menu'] = self.arrangeMenuItems(items, 3, True)
-            self.main_menu.attach(self.labels['menu'], 0, 1, 1, 1)
+            scroll.add(self.labels['menu'])
+            self.main_menu.attach(scroll, 0, 1, 1, 1)
         else:
             self.labels['menu'] = self.arrangeMenuItems(items, 2, True)
-            self.main_menu.attach(self.labels['menu'], 1, 0, 1, 1)
+            scroll.add(self.labels['menu'])
+            self.main_menu.attach(scroll, 1, 0, 1, 1)
         self.content.add(self.main_menu)
 
     def update_graph_visibility(self):
         if self.left_panel is None or not self._printer.get_temp_store_devices():
+            if self._printer.get_temp_store_devices():
+                logging.info("Retrying to create left panel")
+                self._gtk.reset_temp_color()
+                self.main_menu.attach(self.create_left_panel(), 0, 0, 1, 1)
             self.graph_retry += 1
             if self.graph_retry < 5:
                 if self.graph_retry_timeout is None:
@@ -188,13 +195,10 @@ class MainPanel(MenuPanel):
         self.update_graph_visibility()
 
     def change_target_temp(self, temp):
-
-        max_temp = int(float(self._printer.get_config_section(self.active_heater)['max_temp']))
-        if temp > max_temp:
-            self._screen.show_popup_message(_("Can't set above the maximum:") + f' {max_temp}')
-            return
-        temp = max(temp, 0)
         name = self.active_heater.split()[1] if len(self.active_heater.split()) > 1 else self.active_heater
+        temp = self.verify_max_temp(temp)
+        if temp is False:
+            return
 
         if self.active_heater.startswith('extruder'):
             self._screen._ws.klippy.set_tool_temp(self._printer.get_tool_number(self.active_heater), temp)
@@ -208,6 +212,26 @@ class MainPanel(MenuPanel):
             logging.info(f"Unknown heater: {self.active_heater}")
             self._screen.show_popup_message(_("Unknown Heater") + " " + self.active_heater)
         self._printer.set_dev_stat(self.active_heater, "target", temp)
+
+    def verify_max_temp(self, temp):
+        temp = int(temp)
+        max_temp = int(float(self._printer.get_config_section(self.active_heater)['max_temp']))
+        logging.debug(f"{temp}/{max_temp}")
+        if temp > max_temp:
+            self._screen.show_popup_message(_("Can't set above the maximum:") + f' {max_temp}')
+            return False
+        return max(temp, 0)
+
+    def pid_calibrate(self, temp):
+        if self.verify_max_temp(temp):
+            script = {"script": f"PID_CALIBRATE HEATER={self.active_heater} TARGET={temp}"}
+            self._screen._confirm_send_action(
+                None,
+                _("Initiate a PID calibration for:") + f" {self.active_heater} @ {temp} ºC"
+                + "\n\n" + _("It may take more than 5 minutes depending on the heater power."),
+                "printer.gcode.script",
+                script
+            )
 
     def create_left_panel(self):
 
@@ -269,7 +293,10 @@ class MainPanel(MenuPanel):
         self.devices[self.active_heater]['name'].get_style_context().add_class("button_active")
 
         if "keypad" not in self.labels:
-            self.labels["keypad"] = Keypad(self._screen, self.change_target_temp, self.hide_numpad)
+            self.labels["keypad"] = Keypad(self._screen, self.change_target_temp, self.pid_calibrate, self.hide_numpad)
+        can_pid = self._printer.state not in ["printing", "paused"] \
+            and self._screen.printer.config[self.active_heater]['control'] == 'pid'
+        self.labels["keypad"].show_pid(can_pid)
         self.labels["keypad"].clear()
 
         if self._screen.vertical_mode:
