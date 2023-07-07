@@ -23,9 +23,9 @@ class BedMeshPanel(ScreenPanel):
         self.active_mesh = None
         self.profiles = {}
         self.buttons = {
-            'add': self._gtk.Button("increase", " " + _("Add profile"), "color1", .66, Gtk.PositionType.LEFT, 1),
-            'calib': self._gtk.Button("refresh", " " + _("Calibrate"), "color3", .66, Gtk.PositionType.LEFT, 1),
-            'clear': self._gtk.Button("cancel", " " + _("Clear"), "color2", .66, Gtk.PositionType.LEFT, 1),
+            'add': self._gtk.Button("increase", " " + _("Add profile"), "color1", self.bts, Gtk.PositionType.LEFT, 1),
+            'calib': self._gtk.Button("refresh", " " + _("Calibrate"), "color3", self.bts, Gtk.PositionType.LEFT, 1),
+            'clear': self._gtk.Button("cancel", " " + _("Clear"), "color2", self.bts, Gtk.PositionType.LEFT, 1),
         }
         self.buttons['add'].connect("clicked", self.show_create_profile)
         self.buttons['add'].set_hexpand(True)
@@ -54,11 +54,11 @@ class BedMeshPanel(ScreenPanel):
         grid = self._gtk.HomogeneousGrid()
         grid.set_row_homogeneous(False)
         grid.attach(topbar, 0, 0, 2, 1)
-        self.labels['map'] = BedMap(self._gtk.get_font_size(), self.active_mesh)
+        self.labels['map'] = BedMap(self._gtk.font_size, self.active_mesh)
         if self._screen.vertical_mode:
             grid.attach(self.labels['map'], 0, 2, 2, 1)
             grid.attach(scroll, 0, 3, 2, 1)
-            self.labels['map'].set_size_request(self._gtk.get_content_width(), self._gtk.get_content_height() * .4)
+            self.labels['map'].set_size_request(self._gtk.content_width, self._gtk.content_height * .4)
         else:
             grid.attach(self.labels['map'], 0, 2, 1, 1)
             grid.attach(scroll, 1, 2, 1, 1)
@@ -67,9 +67,8 @@ class BedMeshPanel(ScreenPanel):
 
     def activate(self):
         self.load_meshes()
-        with contextlib.suppress(KeyError):
-            self.activate_mesh(self._screen.printer.get_stat("bed_mesh", "profile_name"))
-        self.process_busy(self._printer.busy)
+        if not self._printer.get_stat('bed_mesh', 'profile_name') and 'default' in self.profiles:
+            self.send_load_mesh(None, 'default')  # this is not the default behaviour of klipper anymore
 
     def activate_mesh(self, profile):
         if self.active_mesh is not None:
@@ -126,8 +125,8 @@ class BedMeshPanel(ScreenPanel):
         name.connect("clicked", self.update_graph, profile)
 
         buttons = {
-            "save": self._gtk.Button("complete", None, "color4", .75),
-            "delete": self._gtk.Button("cancel", None, "color2", .75),
+            "save": self._gtk.Button("complete", None, "color4", self.bts),
+            "delete": self._gtk.Button("cancel", None, "color2", self.bts),
         }
         buttons["save"].connect("clicked", self.send_save_mesh, profile)
         buttons["delete"].connect("clicked", self.send_remove_mesh, profile)
@@ -238,8 +237,7 @@ class BedMeshPanel(ScreenPanel):
             self.labels['profile_name'].set_text('')
             self.labels['profile_name'].set_hexpand(True)
             self.labels['profile_name'].connect("activate", self.create_profile)
-            self.labels['profile_name'].connect("focus-in-event", self._show_keyboard)
-            self.labels['profile_name'].grab_focus_without_selecting()
+            self.labels['profile_name'].connect("focus-in-event", self._screen.show_keyboard)
 
             save = self._gtk.Button("complete", _("Save"), "color3")
             save.set_hexpand(False)
@@ -257,11 +255,8 @@ class BedMeshPanel(ScreenPanel):
             self.labels['create_profile'].pack_start(box, True, True, 5)
 
         self.content.add(self.labels['create_profile'])
-        self._show_keyboard()
+        self.labels['profile_name'].grab_focus_without_selecting()
         self.show_create = True
-
-    def _show_keyboard(self, widget=None, event=None):
-        self._screen.show_keyboard(entry=self.labels['profile_name'])
 
     def create_profile(self, widget):
         name = self.labels['profile_name'].get_text()
@@ -273,13 +268,13 @@ class BedMeshPanel(ScreenPanel):
 
     def calibrate_mesh(self, widget):
         self._screen.show_popup_message(_("Calibrating"), level=1)
-        if self._screen.printer.get_stat("toolhead", "homed_axes") != "xyz":
+        if self._printer.get_stat("toolhead", "homed_axes") != "xyz":
             self._screen._ws.klippy.gcode_script(KlippyGcodes.HOME)
 
         self._screen._ws.klippy.gcode_script("BED_MESH_CALIBRATE")
 
         # Load zcalibrate to do a manual mesh
-        if not self._screen.printer.get_probe():
+        if not self._printer.get_probe():
             self.menu_item_clicked(widget, "refresh", {"name": _("Mesh calibrate"), "panel": "zcalibrate"})
 
     def send_clear_mesh(self, widget):

@@ -17,7 +17,7 @@ class SplashScreenPanel(ScreenPanel):
 
     def __init__(self, screen, title):
         super().__init__(screen, title)
-        image = self._gtk.Image("klipper", self._gtk.get_content_width() * .2, self._gtk.get_content_height() * .5)
+        image = self._gtk.Image("klipper", self._gtk.content_width * .2, self._gtk.content_height * .5)
         self.labels['text'] = Gtk.Label(_("Initializing printer..."))
         self.labels['text'].set_line_wrap(True)
         self.labels['text'].set_line_wrap_mode(Pango.WrapMode.WORD_CHAR)
@@ -42,7 +42,7 @@ class SplashScreenPanel(ScreenPanel):
         self.labels['actions'].set_vexpand(False)
         self.labels['actions'].set_halign(Gtk.Align.CENTER)
         self.labels['actions'].set_homogeneous(True)
-        self.labels['actions'].set_size_request(self._gtk.get_content_width(), -1)
+        self.labels['actions'].set_size_request(self._gtk.content_width, -1)
 
         scroll = self._gtk.ScrolledWindow()
         scroll.set_hexpand(True)
@@ -74,12 +74,11 @@ class SplashScreenPanel(ScreenPanel):
         self.clear_action_bar()
         if self.ks_printer_cfg is not None and self._screen._ws.connected:
             power_devices = self.ks_printer_cfg.get("power_devices", "")
-            power_devices = [str(i.strip()) for i in power_devices.split(',')]
-            if power_devices[0]:
+            if power_devices and self._printer.get_power_devices():
                 logging.info(f"Associated power devices: {power_devices}")
-                self.add_power_button(self._screen.search_power_devices(power_devices))
+                self.add_power_button(power_devices)
 
-        if self._screen._ws and self._screen._ws.connected:
+        if self._screen.initialized:
             self.labels['actions'].add(self.labels['restart'])
             self.labels['actions'].add(self.labels['firmware_restart'])
         else:
@@ -91,11 +90,10 @@ class SplashScreenPanel(ScreenPanel):
         self.labels['actions'].show_all()
 
     def add_power_button(self, powerdevs):
-        if powerdevs is not None:
-            self.labels['power'] = self._gtk.Button("shutdown", _("Power On Printer"), "color3")
-            self.labels['power'].connect("clicked", self._screen.power_on, powerdevs)
-            self.check_power_status()
-            self.labels['actions'].add(self.labels['power'])
+        self.labels['power'] = self._gtk.Button("shutdown", _("Power On Printer"), "color3")
+        self.labels['power'].connect("clicked", self._screen.power_devices, powerdevs, True)
+        self.check_power_status()
+        self.labels['actions'].add(self.labels['power'])
 
     def activate(self):
         self.check_power_status()
@@ -105,13 +103,13 @@ class SplashScreenPanel(ScreenPanel):
 
     def check_power_status(self):
         if 'power' in self.labels:
-            devices = self._screen.printer.get_power_devices()
+            devices = self._printer.get_power_devices()
             if devices is not None:
                 for device in devices:
-                    if self._screen.printer.get_power_device_status(device) == "off":
+                    if self._printer.get_power_device_status(device) == "off":
                         self.labels['power'].set_sensitive(True)
                         break
-                    elif self._screen.printer.get_power_device_status(device) == "on":
+                    elif self._printer.get_power_device_status(device) == "on":
                         self.labels['power'].set_sensitive(False)
 
     def firmware_restart(self, widget):

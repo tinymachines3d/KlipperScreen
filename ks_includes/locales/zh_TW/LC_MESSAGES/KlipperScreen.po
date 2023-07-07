@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KlipperScreen\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-28 11:57-0300\n"
+"POT-Creation-Date: 2023-07-02 16:32-0300\n"
 "PO-Revision-Date: 2022-11-28 11:37-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -43,9 +43,6 @@ msgstr ""
 msgid "Accept"
 msgstr "接受"
 
-msgid "Actions"
-msgstr "動作"
-
 msgid "Add profile"
 msgstr ""
 
@@ -53,11 +50,11 @@ msgid "Apply"
 msgstr ""
 
 #, python-format
-msgid "Apply %.2f offset to Endstop?"
+msgid "Apply %s%.3f offset to Endstop?"
 msgstr ""
 
 #, python-format
-msgid "Apply %s%.2f offset to Probe?"
+msgid "Apply %s%.3f offset to Probe?"
 msgstr ""
 
 msgid "Are you sure do you want to exclude the object?"
@@ -105,10 +102,10 @@ msgstr "校正"
 msgid "Calibrated"
 msgstr ""
 
-msgid "Calibrated, save configuration to make it permanent"
-msgstr "校準，保存配置以使其永久化"
-
 msgid "Calibrating"
+msgstr ""
+
+msgid "Camera"
 msgstr ""
 
 msgid "Can't set above the maximum:"
@@ -147,9 +144,6 @@ msgstr "關閉"
 msgid "Complete"
 msgstr "完成"
 
-msgid "Configuration"
-msgstr "配置"
-
 msgid "Confirm Emergency Stop"
 msgstr "確認緊急停止"
 
@@ -172,8 +166,8 @@ msgstr "冷卻"
 msgid "Date"
 msgstr "日期"
 
-msgid "Decrease"
-msgstr "減少"
+msgid "Delete Directory?"
+msgstr ""
 
 msgid "Delete File?"
 msgstr ""
@@ -183,9 +177,6 @@ msgstr "取消選擇"
 
 msgid "Disable Motors"
 msgstr "禁用步進電機"
-
-msgid "Disable XY"
-msgstr "禁用 XY"
 
 msgid "Distance (mm)"
 msgstr "距離(mm)"
@@ -266,6 +257,9 @@ msgstr "字體大小"
 msgid "Full Update"
 msgstr "滿的 更新"
 
+msgid "Fullscreen"
+msgstr ""
+
 msgid "Go Back"
 msgstr "返回"
 
@@ -284,6 +278,9 @@ msgstr "在溫度中隱藏傳感器。"
 msgid "Hide temp."
 msgstr ""
 
+msgid "Home"
+msgstr "首頁"
+
 msgid "Home All"
 msgstr "歸零全部"
 
@@ -299,9 +296,6 @@ msgstr "歸零 Y"
 msgid "Home Z"
 msgstr "歸零 Z"
 
-msgid "Homing"
-msgstr "歸零"
-
 msgid "Host"
 msgstr ""
 
@@ -311,11 +305,11 @@ msgstr "主機名稱"
 msgid "Icon Theme"
 msgstr "圖標主題"
 
-msgid "Increase"
-msgstr "增加"
-
 msgid "Initializing printer..."
 msgstr "初始化列印機中.."
+
+msgid "Initiate a PID calibration for:"
+msgstr ""
 
 msgid "Input Shaper"
 msgstr ""
@@ -337,6 +331,9 @@ msgstr "反轉 Y"
 
 msgid "Invert Z"
 msgstr "反轉 Z"
+
+msgid "It may take more than 5 minutes depending on the heater power."
+msgstr ""
 
 msgid "Klipper Restart"
 msgstr "Klipper 重新啟動"
@@ -427,6 +424,9 @@ msgstr "修改"
 
 msgid "Moonraker: connected"
 msgstr "Moonraker：已連接"
+
+msgid "More"
+msgstr ""
 
 msgid "Move"
 msgstr "移動"
@@ -531,6 +531,9 @@ msgstr "龍門調平"
 msgid "Raise Nozzle"
 msgstr "上升噴嘴"
 
+msgid "Recover"
+msgstr ""
+
 msgid "Recover Hard"
 msgstr "恢復 Hard"
 
@@ -541,6 +544,9 @@ msgid "Reference"
 msgstr "參考"
 
 msgid "Refresh"
+msgstr ""
+
+msgid "Rename/Move:"
 msgstr ""
 
 msgid "Restart"
@@ -601,10 +607,6 @@ msgstr "選擇"
 msgid "Send"
 msgstr "發送"
 
-#, python-format
-msgid "Sending Power ON signal to: %s"
-msgstr "正在發送通電信號到：%s"
-
 msgid "Set Temp"
 msgstr "設定溫度"
 
@@ -625,9 +627,6 @@ msgstr "大小"
 
 msgid "Slicer"
 msgstr "切片"
-
-msgid "Slicer Time correction (%)"
-msgstr "切片器時間校正 (%)"
 
 msgid "Slicer:"
 msgstr ""
@@ -739,8 +738,9 @@ msgid "hour"
 msgid_plural "hours"
 msgstr[0] "小時"
 
-msgid "minutes"
-msgstr "分鐘"
+msgid "minute"
+msgid_plural "minutes"
+msgstr[0] ""
 
 msgid "mm"
 msgstr "mm"
@@ -750,6 +750,37 @@ msgstr "mm/s"
 
 msgid "mm/s²"
 msgstr "mm/s²"
+
+msgid "mm³/s"
+msgstr ""
+
+#~ msgid "Actions"
+#~ msgstr "動作"
+
+#~ msgid "Configuration"
+#~ msgstr "配置"
+
+#~ msgid "Homing"
+#~ msgstr "歸零"
+
+#~ msgid "Disable XY"
+#~ msgstr "禁用 XY"
+
+#~ msgid "Slicer Time correction (%)"
+#~ msgstr "切片器時間校正 (%)"
+
+#~ msgid "Calibrated, save configuration to make it permanent"
+#~ msgstr "校準，保存配置以使其永久化"
+
+#~ msgid "Decrease"
+#~ msgstr "減少"
+
+#~ msgid "Increase"
+#~ msgstr "增加"
+
+#, python-format
+#~ msgid "Sending Power ON signal to: %s"
+#~ msgstr "正在發送通電信號到：%s"
 
 #~ msgid "Z+"
 #~ msgstr "Z+"
@@ -781,9 +812,6 @@ msgstr "mm/s²"
 
 #~ msgid "Delete"
 #~ msgstr "刪除"
-
-#~ msgid "Home"
-#~ msgstr "首頁"
 
 #~ msgid "Off"
 #~ msgstr "關閉"

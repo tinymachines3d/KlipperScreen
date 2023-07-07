@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KlipperScreen\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-28 11:57-0300\n"
-"PO-Revision-Date: 2022-11-28 11:35-0300\n"
+"POT-Creation-Date: 2023-07-02 16:32-0300\n"
+"PO-Revision-Date: 2022-11-30 18:15-0300\n"
 "Last-Translator: Jakob Kais <schpuntik@freenet.de>\n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -44,9 +44,6 @@ msgstr "Ускорение:"
 msgid "Accept"
 msgstr "Применить"
 
-msgid "Actions"
-msgstr "Действия"
-
 msgid "Add profile"
 msgstr "Добавить профиль"
 
@@ -54,12 +51,12 @@ msgid "Apply"
 msgstr "Применить"
 
 #, python-format
-msgid "Apply %.2f offset to Endstop?"
-msgstr "Применить смещение %.2f к Endstop?"
+msgid "Apply %s%.3f offset to Endstop?"
+msgstr ""
 
 #, python-format
-msgid "Apply %s%.2f offset to Probe?"
-msgstr "Применить смещение %s%.2f к зонду?"
+msgid "Apply %s%.3f offset to Probe?"
+msgstr ""
 
 msgid "Are you sure do you want to exclude the object?"
 msgstr "Вы уверены, что хотите исключить объект?"
@@ -106,11 +103,11 @@ msgstr "Калибровка"
 msgid "Calibrated"
 msgstr "Откалиброванный"
 
-msgid "Calibrated, save configuration to make it permanent"
-msgstr "Откалибровано, сохраните конфигурацию, чтобы сделать ее постоянной"
-
 msgid "Calibrating"
 msgstr "Калибровка"
+
+msgid "Camera"
+msgstr ""
 
 msgid "Can't set above the maximum:"
 msgstr "Невозможно установить выше максимума:"
@@ -148,9 +145,6 @@ msgstr "Закрыть"
 msgid "Complete"
 msgstr "Готово"
 
-msgid "Configuration"
-msgstr "Параметр"
-
 msgid "Confirm Emergency Stop"
 msgstr "Подтвердить аварийную остановку"
 
@@ -173,8 +167,8 @@ msgstr "Остудить"
 msgid "Date"
 msgstr "Дата"
 
-msgid "Decrease"
-msgstr "Уменьшить"
+msgid "Delete Directory?"
+msgstr ""
 
 msgid "Delete File?"
 msgstr "Удалить Файл?"
@@ -184,9 +178,6 @@ msgstr "Отменить выбор"
 
 msgid "Disable Motors"
 msgstr "Откл. моторы"
-
-msgid "Disable XY"
-msgstr "Отключить XY"
 
 msgid "Distance (mm)"
 msgstr "Расстояние (mm)"
@@ -267,6 +258,9 @@ msgstr "Размер шрифта"
 msgid "Full Update"
 msgstr "Полный Обновлять"
 
+msgid "Fullscreen"
+msgstr ""
+
 msgid "Go Back"
 msgstr "Назад"
 
@@ -285,6 +279,9 @@ msgstr "Скрыть датчики в Temp."
 msgid "Hide temp."
 msgstr "Скрыть температуру."
 
+msgid "Home"
+msgstr "Парковка"
+
 msgid "Home All"
 msgstr "Парковать все"
 
@@ -300,9 +297,6 @@ msgstr "Парковать Y"
 msgid "Home Z"
 msgstr "Парковать Z"
 
-msgid "Homing"
-msgstr "Парковка"
-
 msgid "Host"
 msgstr "Хост"
 
@@ -312,11 +306,11 @@ msgstr "Имя хоста"
 msgid "Icon Theme"
 msgstr "Темы"
 
-msgid "Increase"
-msgstr "Поднять"
-
 msgid "Initializing printer..."
 msgstr "Принтер стартует..."
+
+msgid "Initiate a PID calibration for:"
+msgstr ""
 
 msgid "Input Shaper"
 msgstr "Входной шейпер"
@@ -338,6 +332,9 @@ msgstr "Инверсия Y"
 
 msgid "Invert Z"
 msgstr "Инверсия Z"
+
+msgid "It may take more than 5 minutes depending on the heater power."
+msgstr ""
 
 msgid "Klipper Restart"
 msgstr "Klipper Рестарт"
@@ -428,6 +425,9 @@ msgstr "Изменено"
 
 msgid "Moonraker: connected"
 msgstr "Moonraker: подключен"
+
+msgid "More"
+msgstr ""
 
 msgid "Move"
 msgstr "Двигать"
@@ -536,6 +536,9 @@ msgstr "Уровень Quad Gantry"
 msgid "Raise Nozzle"
 msgstr "Поднять сопло"
 
+msgid "Recover"
+msgstr "Восстановить"
+
 msgid "Recover Hard"
 msgstr "Восстановить Hard"
 
@@ -547,6 +550,9 @@ msgstr "Ссылка"
 
 msgid "Refresh"
 msgstr "Обновить"
+
+msgid "Rename/Move:"
+msgstr ""
 
 msgid "Restart"
 msgstr "Перезагрузка"
@@ -606,10 +612,6 @@ msgstr "Выбирать"
 msgid "Send"
 msgstr "Отправить"
 
-#, python-format
-msgid "Sending Power ON signal to: %s"
-msgstr "Отправка сигнала включения питания на: %s"
-
 msgid "Set Temp"
 msgstr "Заданная температура"
 
@@ -620,7 +622,7 @@ msgid "Show"
 msgstr "Показывать"
 
 msgid "Show Heater Power"
-msgstr "Показать мощьность нагрева"
+msgstr "Показать мощность нагрева"
 
 msgid "Shutdown"
 msgstr "Выключить"
@@ -630,9 +632,6 @@ msgstr "Размер"
 
 msgid "Slicer"
 msgstr "Слайсер"
-
-msgid "Slicer Time correction (%)"
-msgstr "Коррекция времени Слайсер (%)"
 
 msgid "Slicer:"
 msgstr "Слайсер:"
@@ -748,8 +747,11 @@ msgstr[0] "час"
 msgstr[1] "часа"
 msgstr[2] "часа"
 
-msgid "minutes"
-msgstr "минут"
+msgid "minute"
+msgid_plural "minutes"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 msgid "mm"
 msgstr "мм"
@@ -759,6 +761,37 @@ msgstr "мм/с"
 
 msgid "mm/s²"
 msgstr "мм/с²"
+
+msgid "mm³/s"
+msgstr "мм/с³"
+
+#~ msgid "Actions"
+#~ msgstr "Действия"
+
+#~ msgid "Configuration"
+#~ msgstr "Параметр"
+
+#~ msgid "Homing"
+#~ msgstr "Парковка"
+
+#~ msgid "Disable XY"
+#~ msgstr "Отключить XY"
+
+#~ msgid "Slicer Time correction (%)"
+#~ msgstr "Коррекция времени Слайсер (%)"
+
+#~ msgid "Calibrated, save configuration to make it permanent"
+#~ msgstr "Откалибровано, сохраните конфигурацию, чтобы сделать ее постоянной"
+
+#~ msgid "Decrease"
+#~ msgstr "Уменьшить"
+
+#~ msgid "Increase"
+#~ msgstr "Поднять"
+
+#, python-format
+#~ msgid "Sending Power ON signal to: %s"
+#~ msgstr "Отправка сигнала включения питания на: %s"
 
 #~ msgid "Sort:"
 #~ msgstr "Сортировать:"
@@ -796,9 +829,6 @@ msgstr "мм/с²"
 
 #~ msgid "Delete"
 #~ msgstr "Удалить"
-
-#~ msgid "Home"
-#~ msgstr "Парковка"
 
 #~ msgid "Off"
 #~ msgstr "Выкл"

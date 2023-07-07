@@ -32,6 +32,10 @@ default_printer: Ender 3 Pro
 # To define a full set of custom menues (instead of merging user entries with default entries)
 # set this to False. See Menu section below.
 use_default_menu: True
+
+# Define one or more moonraker power devices that turn on/off with the screensaver (CSV list)
+screen_on_devices: example1, example2
+screen_off_devices:  example1, example2
 ```
 
 ## Printer Options
@@ -75,7 +79,7 @@ calibrate_y_position: 100
 
 # Bed Screws
 # define the screw positons required for odd number of screws in a comma separated list
-# possible values are: bl, br, bm, fl, fr, fm, lm, rm
+# possible values are: bl, br, bm, fl, fr, fm, lm, rm, center
 # they correspond to back-left, back-right, back-middle, front-left, front-right, front-middle, left-middle, right-middle
 screw_positions: ""
 
@@ -86,6 +90,9 @@ screw_rotation: 0
 # Define distances and speeds for the extrude panel. CSV list 2 to 4 integers
 extrude_distances: 5, 10, 15, 25
 extrude_speeds: 1, 2, 5, 25
+
+# Camera configuration
+camera_url: http://127.0.0.1/webcam/?action=stream
 ```
 
 ## Preheat Options
@@ -124,8 +131,14 @@ A menu item is configured as follows:
 [menu __main my_menu_item]
 # To build a sub-menu of this menu item, you would next use [menu __main my_menu_item sub_menu_item]
 name: Item Name
-icon: home
 # Optional Parameters
+#
+# Icon name to be used, it can be any image in the directory:
+# KlipperScreen/styles/{theme}/images/ where {theme} is your current theme
+# Supported formats svg or png
+icon: home
+# Icon style, defined as "button.mycolor4" (for example) in the theme css
+style: mycolor4
 # Panel from the panels listed below
 panel: preheat
 # Moonraker method to call when the item is selected
