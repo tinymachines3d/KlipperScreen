@@ -1,19 +1,19 @@
+# Daviteusz <daviteusz0@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: Polish (KlipperScreen)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-02 16:32-0300\n"
-"PO-Revision-Date: 2023-06-29 22:18+0000\n"
-"Last-Translator: Daviteusz <imefiu3@gmail.com>\n"
-"Language-Team: Polish <https://translate.daviteusz.eu/projects/klipperscreen/"
-"translate/pl/>\n"
+"POT-Creation-Date: 2023-07-31 02:01-0300\n"
+"PO-Revision-Date: 2023-07-31 22:13+0000\n"
+"Last-Translator: Daviteusz <daviteusz0@gmail.com>\n"
+"Language-Team: Polish\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.18.1\n"
+"X-Generator: Weblate 4.18.2\n"
 
 #, python-format
 msgid "%s will be updated to version"
@@ -32,7 +32,7 @@ msgid "ADXL Not Configured"
 msgstr "ADXL nieskonfigurowany"
 
 msgid "Abort"
-msgstr "Anuluj"
+msgstr "Przerwij"
 
 msgid "Acceleration:"
 msgstr "Przyśpieszenie:"
@@ -160,6 +160,9 @@ msgstr "Kontynuuj"
 msgid "Cooldown"
 msgstr "Studzenie"
 
+msgid "DPMS has failed to load and has been disabled"
+msgstr "Nie udało się wczytać DPMS i został on wyłączony"
+
 msgid "Date"
 msgstr "Data"
 
@@ -258,7 +261,7 @@ msgid "Fullscreen"
 msgstr "Pełny ekran"
 
 msgid "Go Back"
-msgstr "Wróć"
+msgstr "Powróć"
 
 msgid "Height:"
 msgstr "Wysokość:"
@@ -270,13 +273,13 @@ msgid "Hide"
 msgstr "Ukryj"
 
 msgid "Hide sensors in Temp."
-msgstr "Ukryj sensory w obszarze Temperatura"
+msgstr "Ukryj sensory w sekcji temperatur"
 
 msgid "Hide temp."
 msgstr "Ukryj temp."
 
 msgid "Home"
-msgstr ""
+msgstr "Bazuj"
 
 msgid "Home All"
 msgstr "Bazuj wszystkie"
@@ -306,7 +309,7 @@ msgid "Initializing printer..."
 msgstr "Inicjowanie drukarki..."
 
 msgid "Initiate a PID calibration for:"
-msgstr ""
+msgstr "Rozpoczęcie kalibracji PID dla:"
 
 msgid "Input Shaper"
 msgstr "Input Shaper"
@@ -330,7 +333,7 @@ msgid "Invert Z"
 msgstr "Odwróć Z"
 
 msgid "It may take more than 5 minutes depending on the heater power."
-msgstr ""
+msgstr "Może to potrwać dłużej niż 5 minut w zależności od mocy grzałki."
 
 msgid "Klipper Restart"
 msgstr "Restartuj Klipper"
@@ -423,7 +426,7 @@ msgid "Moonraker: connected"
 msgstr "Moonraker: połączony"
 
 msgid "More"
-msgstr ""
+msgstr "Więcej"
 
 msgid "Move"
 msgstr "Ruch"
@@ -494,7 +497,7 @@ msgid "Power On Printer"
 msgstr "Zasilanie włączone"
 
 msgid "Pressure Advance:"
-msgstr "Natężenie docisku:"
+msgstr "Pressure Advance:"
 
 msgid "Print"
 msgstr "Drukuj"
@@ -648,7 +651,10 @@ msgid "Speed:"
 msgstr "Prędkość:"
 
 msgid "Square Corner Velocity"
-msgstr "Prędkość w narożniku prostokątnym"
+msgstr "Prędkość na rogu kwadratu"
+
+msgid "Standby"
+msgstr "Tryb gotowości"
 
 msgid "Start"
 msgstr "Start"
