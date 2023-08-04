@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-07 07:02-0600\n"
+"POT-Creation-Date: 2023-07-31 02:01-0300\n"
 "PO-Revision-Date: 2023-05-07 18:50+0200\n"
 "Last-Translator: Thijs Triemstra <info@collab.nl>\n"
 "Language-Team: \n"
@@ -42,9 +42,6 @@ msgstr "Acceleratie:"
 
 msgid "Accept"
 msgstr "Accepteer"
-
-msgid "Actions"
-msgstr "Acties"
 
 msgid "Add profile"
 msgstr "Profiel toevoegen"
@@ -147,9 +144,6 @@ msgstr "Sluiten"
 msgid "Complete"
 msgstr "Voltooid"
 
-msgid "Configuration"
-msgstr "Configuratie"
-
 msgid "Confirm Emergency Stop"
 msgstr "Bevestig Nood Stop"
 
@@ -169,6 +163,9 @@ msgstr "Doorgaan"
 msgid "Cooldown"
 msgstr "Afkoelen"
 
+msgid "DPMS has failed to load and has been disabled"
+msgstr ""
+
 msgid "Date"
 msgstr "Datum"
 
@@ -183,9 +180,6 @@ msgstr "Deselecteer"
 
 msgid "Disable Motors"
 msgstr "Motors Uitschakelen"
-
-msgid "Disable XY"
-msgstr "XY Uitschakelen"
 
 msgid "Distance (mm)"
 msgstr "Afstand (mm)"
@@ -287,6 +281,9 @@ msgstr "Verberg sensoren in Temp."
 msgid "Hide temp."
 msgstr "Verberg temp."
 
+msgid "Home"
+msgstr ""
+
 msgid "Home All"
 msgstr "Home alles"
 
@@ -302,9 +299,6 @@ msgstr "Home Y"
 msgid "Home Z"
 msgstr "Home Z"
 
-msgid "Homing"
-msgstr "Homing"
-
 msgid "Host"
 msgstr "Host"
 
@@ -316,6 +310,9 @@ msgstr "Icoon Thema"
 
 msgid "Initializing printer..."
 msgstr "Initialiseren printer…"
+
+msgid "Initiate a PID calibration for:"
+msgstr ""
 
 msgid "Input Shaper"
 msgstr "Input Shaper"
@@ -337,6 +334,9 @@ msgstr "Invert Y"
 
 msgid "Invert Z"
 msgstr "Invert Z"
+
+msgid "It may take more than 5 minutes depending on the heater power."
+msgstr ""
 
 msgid "Klipper Restart"
 msgstr "Klipper Herstarten"
@@ -427,6 +427,9 @@ msgstr "Aangepast"
 
 msgid "Moonraker: connected"
 msgstr "Moonraker: verbonden"
+
+msgid "More"
+msgstr ""
 
 msgid "Move"
 msgstr "Beweeg"
@@ -631,9 +634,6 @@ msgstr "Afmetingen"
 msgid "Slicer"
 msgstr "Slicer"
 
-msgid "Slicer Time correction (%)"
-msgstr "Slicer Tijd correctie (%)"
-
 msgid "Slicer:"
 msgstr "Slicer:"
 
@@ -654,6 +654,9 @@ msgstr "Snelheid:"
 
 msgid "Square Corner Velocity"
 msgstr "Square Corner Velocity"
+
+msgid "Standby"
+msgstr ""
 
 msgid "Start"
 msgstr "Start"
@@ -762,3 +765,18 @@ msgstr "mm/s²"
 
 msgid "mm³/s"
 msgstr "mm³/s"
+
+#~ msgid "Actions"
+#~ msgstr "Acties"
+
+#~ msgid "Configuration"
+#~ msgstr "Configuratie"
+
+#~ msgid "Homing"
+#~ msgstr "Homing"
+
+#~ msgid "Disable XY"
+#~ msgstr "XY Uitschakelen"
+
+#~ msgid "Slicer Time correction (%)"
+#~ msgstr "Slicer Tijd correctie (%)"

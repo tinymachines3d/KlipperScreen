@@ -4,7 +4,7 @@
 
 Install the screen, following the instructions provided by the manufacturer, Some screens don't neeed extra software but some need to be installed with a script.
 It's strongly recommended to test it and ensure your hardware is working with Raspbian, Ubuntu or any distro you like.
-Once you stablished that the screen is working, then proceed installing KlipperScreen.
+Once you have established that the screen is working, then proceed installing KlipperScreen.
 
 ## Setup
 This install process is meant for a non-desktop version of the OS for example Raspbian Lite, but it should work on other versions.
@@ -67,7 +67,7 @@ If you wish to use the update manager feature of moonraker for KlipperScreen, ad
 [update_manager KlipperScreen]
 type: git_repo
 path: ~/KlipperScreen
-origin: https://github.com/jordanruthe/KlipperScreen.git
+origin: https://github.com/KlipperScreen/KlipperScreen.git
 env: ~/.KlipperScreen-env/bin/python
 requirements: scripts/KlipperScreen-requirements.txt
 install_script: scripts/KlipperScreen-install.sh

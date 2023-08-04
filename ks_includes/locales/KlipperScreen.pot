@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-07 07:02-0600\n"
+"POT-Creation-Date: 2023-07-31 02:01-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,9 +41,6 @@ msgid "Acceleration:"
 msgstr ""
 
 msgid "Accept"
-msgstr ""
-
-msgid "Actions"
 msgstr ""
 
 msgid "Add profile"
@@ -147,9 +144,6 @@ msgstr ""
 msgid "Complete"
 msgstr ""
 
-msgid "Configuration"
-msgstr ""
-
 msgid "Confirm Emergency Stop"
 msgstr ""
 
@@ -169,6 +163,9 @@ msgstr ""
 msgid "Cooldown"
 msgstr ""
 
+msgid "DPMS has failed to load and has been disabled"
+msgstr ""
+
 msgid "Date"
 msgstr ""
 
@@ -182,9 +179,6 @@ msgid "Deselect"
 msgstr ""
 
 msgid "Disable Motors"
-msgstr ""
-
-msgid "Disable XY"
 msgstr ""
 
 msgid "Distance (mm)"
@@ -287,6 +281,9 @@ msgstr ""
 msgid "Hide temp."
 msgstr ""
 
+msgid "Home"
+msgstr ""
+
 msgid "Home All"
 msgstr ""
 
@@ -302,9 +299,6 @@ msgstr ""
 msgid "Home Z"
 msgstr ""
 
-msgid "Homing"
-msgstr ""
-
 msgid "Host"
 msgstr ""
 
@@ -315,6 +309,9 @@ msgid "Icon Theme"
 msgstr ""
 
 msgid "Initializing printer..."
+msgstr ""
+
+msgid "Initiate a PID calibration for:"
 msgstr ""
 
 msgid "Input Shaper"
@@ -336,6 +333,9 @@ msgid "Invert Y"
 msgstr ""
 
 msgid "Invert Z"
+msgstr ""
+
+msgid "It may take more than 5 minutes depending on the heater power."
 msgstr ""
 
 msgid "Klipper Restart"
@@ -426,6 +426,9 @@ msgid "Modified"
 msgstr ""
 
 msgid "Moonraker: connected"
+msgstr ""
+
+msgid "More"
 msgstr ""
 
 msgid "Move"
@@ -629,9 +632,6 @@ msgstr ""
 msgid "Slicer"
 msgstr ""
 
-msgid "Slicer Time correction (%)"
-msgstr ""
-
 msgid "Slicer:"
 msgstr ""
 
@@ -651,6 +651,9 @@ msgid "Speed:"
 msgstr ""
 
 msgid "Square Corner Velocity"
+msgstr ""
+
+msgid "Standby"
 msgstr ""
 
 msgid "Start"

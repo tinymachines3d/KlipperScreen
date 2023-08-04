@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-07 07:18-0600\n"
+"POT-Creation-Date: 2023-07-31 02:01-0300\n"
 "PO-Revision-Date: 2022-11-30 18:14-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -46,9 +46,6 @@ msgstr "Aceleração:"
 
 msgid "Accept"
 msgstr "Aceitar"
-
-msgid "Actions"
-msgstr "Ações"
 
 msgid "Add profile"
 msgstr "Adicionar perfil"
@@ -151,9 +148,6 @@ msgstr "Fechar"
 msgid "Complete"
 msgstr "Completado"
 
-msgid "Configuration"
-msgstr "Configuração"
-
 msgid "Confirm Emergency Stop"
 msgstr "Etapa extra ao Parar com Emergência"
 
@@ -173,6 +167,9 @@ msgstr "Continuar"
 msgid "Cooldown"
 msgstr "Resfriar"
 
+msgid "DPMS has failed to load and has been disabled"
+msgstr ""
+
 msgid "Date"
 msgstr "Data"
 
@@ -187,9 +184,6 @@ msgstr "Deselecionar"
 
 msgid "Disable Motors"
 msgstr "Desabilitar Motores"
-
-msgid "Disable XY"
-msgstr "Desabilitar YX"
 
 msgid "Distance (mm)"
 msgstr "Distancia (mm)"
@@ -291,6 +285,9 @@ msgstr "Ocultar sensores na Temperatura."
 msgid "Hide temp."
 msgstr "Ocultar temperatura"
 
+msgid "Home"
+msgstr ""
+
 msgid "Home All"
 msgstr "Zerar XYZ"
 
@@ -306,9 +303,6 @@ msgstr "Zerar Y"
 msgid "Home Z"
 msgstr "Zerar Z"
 
-msgid "Homing"
-msgstr "Zerar"
-
 msgid "Host"
 msgstr "Host"
 
@@ -320,6 +314,9 @@ msgstr "Tema"
 
 msgid "Initializing printer..."
 msgstr "Inicializando Impressora..."
+
+msgid "Initiate a PID calibration for:"
+msgstr ""
 
 msgid "Input Shaper"
 msgstr ""
@@ -341,6 +338,9 @@ msgstr "Inverter Y"
 
 msgid "Invert Z"
 msgstr "Inverter Z"
+
+msgid "It may take more than 5 minutes depending on the heater power."
+msgstr ""
 
 msgid "Klipper Restart"
 msgstr "Reiniciar Klipper"
@@ -431,6 +431,9 @@ msgstr "Modificado"
 
 msgid "Moonraker: connected"
 msgstr "Moonraker: Conectado"
+
+msgid "More"
+msgstr ""
 
 msgid "Move"
 msgstr "Mover"
@@ -635,9 +638,6 @@ msgstr "Tamanho"
 msgid "Slicer"
 msgstr "Fatiador"
 
-msgid "Slicer Time correction (%)"
-msgstr "Correção do tempo do fatiador (%)"
-
 msgid "Slicer:"
 msgstr "Fatiador:"
 
@@ -658,6 +658,9 @@ msgstr "Velocidade:"
 
 msgid "Square Corner Velocity"
 msgstr "Velocidade do Canto Reto"
+
+msgid "Standby"
+msgstr ""
 
 msgid "Start"
 msgstr "Iniciar"
@@ -766,6 +769,21 @@ msgstr "mm/s²"
 
 msgid "mm³/s"
 msgstr ""
+
+#~ msgid "Actions"
+#~ msgstr "Ações"
+
+#~ msgid "Configuration"
+#~ msgstr "Configuração"
+
+#~ msgid "Homing"
+#~ msgstr "Zerar"
+
+#~ msgid "Disable XY"
+#~ msgstr "Desabilitar YX"
+
+#~ msgid "Slicer Time correction (%)"
+#~ msgstr "Correção do tempo do fatiador (%)"
 
 #~ msgid "Calibrated, save configuration to make it permanent"
 #~ msgstr "Calibrado, use o comando para salvar"

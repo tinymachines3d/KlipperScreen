@@ -1,5 +1,4 @@
 import logging
-import contextlib
 import gi
 
 gi.require_version("Gtk", "3.0")
@@ -74,14 +73,17 @@ class Printer:
             if x.startswith('output_pin ') and not x.split()[1].startswith("_"):
                 self.output_pin_count += 1
             if x.startswith('bed_mesh '):
-                r = self.config[x]
-                r['x_count'] = int(r['x_count'])
-                r['y_count'] = int(r['y_count'])
-                r['max_x'] = float(r['max_x'])
-                r['min_x'] = float(r['min_x'])
-                r['max_y'] = float(r['max_y'])
-                r['min_y'] = float(r['min_y'])
-                r['points'] = [[float(j.strip()) for j in i.split(",")] for i in r['points'].strip().split("\n")]
+                try:
+                    r = self.config[x]
+                    r['x_count'] = int(r['x_count'])
+                    r['y_count'] = int(r['y_count'])
+                    r['max_x'] = float(r['max_x'])
+                    r['min_x'] = float(r['min_x'])
+                    r['max_y'] = float(r['max_y'])
+                    r['min_y'] = float(r['min_y'])
+                    r['points'] = [[float(j.strip()) for j in i.split(",")] for i in r['points'].strip().split("\n")]
+                except KeyError:
+                    logging.debug(f"Couldn't load mesh {x}: {self.config[x]}")
         self.process_update(data)
 
         logging.info(f"Klipper version: {printer_info['software_version']}")
@@ -112,14 +114,14 @@ class Printer:
         # webhooks states: startup, ready, shutdown, error
         # print_stats: standby, printing, paused, error, complete
         # idle_timeout: Idle, Printing, Ready
-        if self.data['webhooks']['state'] == "ready":
-            with contextlib.suppress(KeyError):
-                if self.data['print_stats']['state'] == 'paused':
-                    return "paused"
-                if self.data['print_stats']['state'] == 'printing':
-                    return "printing"
-                if self.data['idle_timeout']['state'].lower() == "printing":
-                    return "busy"
+        if self.data['webhooks']['state'] == "ready" and (
+                'print_stats' in self.data and 'state' in self.data['print_stats']):
+            if self.data['print_stats']['state'] == 'paused':
+                return "paused"
+            if self.data['print_stats']['state'] == 'printing':
+                return "printing"
+            if self.data['idle_timeout']['state'].lower() == "printing":
+                return "busy"
         return self.data['webhooks']['state']
 
     def process_status_update(self):
@@ -132,6 +134,7 @@ class Printer:
             GLib.idle_add(self.busy_cb, False)
         if state != self.state:
             self.change_state(state)
+        return False
 
     def process_power_update(self, data):
         if data['device'] in self.power_devices:

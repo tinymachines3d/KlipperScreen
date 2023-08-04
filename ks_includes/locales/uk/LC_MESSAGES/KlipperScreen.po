@@ -5,19 +5,19 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2023-05-24 14:53-0300\n"
+"Project-Id-Version: 2023-07-31 15:31\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-17 07:58-0600\n"
-"PO-Revision-Date: 2023-05-24 22:02+0300\n"
+"POT-Creation-Date: 2023-07-31 02:01-0300\n"
+"PO-Revision-Date: 2023-07-31 15:32+0300\n"
 "Last-Translator: Andrii Komarovskyi\n"
 "Language-Team: Andrii Komarovskyi\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
-"X-Generator: Poedit 3.1\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #, python-format
 msgid "%s will be updated to version"
@@ -43,9 +43,6 @@ msgstr "Прискорення:"
 
 msgid "Accept"
 msgstr "Прийняти"
-
-msgid "Actions"
-msgstr "Дії"
 
 msgid "Add profile"
 msgstr "Додати профіль"
@@ -148,9 +145,6 @@ msgstr "Закрити"
 msgid "Complete"
 msgstr "Завершено"
 
-msgid "Configuration"
-msgstr "Конфігурація"
-
 msgid "Confirm Emergency Stop"
 msgstr "Підтвердьте АВАРІЙНУ ЗУПИНКУ"
 
@@ -170,6 +164,9 @@ msgstr "Продовжити"
 msgid "Cooldown"
 msgstr "Охолодження"
 
+msgid "DPMS has failed to load and has been disabled"
+msgstr "DPMS не вдалося завантажити, і його було вимкнено"
+
 msgid "Date"
 msgstr "Дата"
 
@@ -184,9 +181,6 @@ msgstr "Скасувати вибір"
 
 msgid "Disable Motors"
 msgstr "Вимкнути мотори"
-
-msgid "Disable XY"
-msgstr "Вимкнути XY"
 
 msgid "Distance (mm)"
 msgstr "Відстань (мм)"
@@ -292,6 +286,9 @@ msgstr "Сховати датчик t°."
 msgid "Hide temp."
 msgstr "Приховати темп."
 
+msgid "Home"
+msgstr "Домашня сторінка"
+
 msgid "Home All"
 msgstr "Дім Всі"
 
@@ -307,9 +304,6 @@ msgstr "Дім Y"
 msgid "Home Z"
 msgstr "Дім Z"
 
-msgid "Homing"
-msgstr "До дому"
-
 msgid "Host"
 msgstr "Хост"
 
@@ -321,6 +315,9 @@ msgstr "Тема оформлення"
 
 msgid "Initializing printer..."
 msgstr "Ініціалізація принтера..."
+
+msgid "Initiate a PID calibration for:"
+msgstr "Почати калібрування PID для:"
 
 msgid "Input Shaper"
 msgstr "Input Shaper"
@@ -342,6 +339,9 @@ msgstr "Інвертувати Y"
 
 msgid "Invert Z"
 msgstr "Інвертувати Z"
+
+msgid "It may take more than 5 minutes depending on the heater power."
+msgstr "Залежно від потужності обігрівача це може зайняти більше 5 хвилин."
 
 msgid "Klipper Restart"
 msgstr ""
@@ -434,6 +434,9 @@ msgstr "Змінено"
 
 msgid "Moonraker: connected"
 msgstr "Підключено до Moonraker"
+
+msgid "More"
+msgstr "Більше"
 
 msgid "Move"
 msgstr "Переміщення"
@@ -645,9 +648,6 @@ msgstr "Розмір"
 msgid "Slicer"
 msgstr "Слайсер"
 
-msgid "Slicer Time correction (%)"
-msgstr "Виправлення часу слайсера (%)"
-
 msgid "Slicer:"
 msgstr "Слайсер:"
 
@@ -668,6 +668,9 @@ msgstr "Швидкість:"
 
 msgid "Square Corner Velocity"
 msgstr "Квадратно кутова швидкість"
+
+msgid "Standby"
+msgstr "Очікування"
 
 msgid "Start"
 msgstr "СТАРТ"
@@ -782,6 +785,21 @@ msgstr "мм/с²"
 msgid "mm³/s"
 msgstr "мм/с³"
 
+#~ msgid "Actions"
+#~ msgstr "Дії"
+
+#~ msgid "Configuration"
+#~ msgstr "Конфігурація"
+
+#~ msgid "Homing"
+#~ msgstr "До дому"
+
+#~ msgid "Disable XY"
+#~ msgstr "Вимкнути XY"
+
+#~ msgid "Slicer Time correction (%)"
+#~ msgstr "Виправлення часу слайсера (%)"
+
 #~ msgid "Calibrated, save configuration to make it permanent"
 #~ msgstr "Відкалібровано, збережіть конфігурацію, щоб зробити її постійною"
 
@@ -831,9 +849,6 @@ msgstr "мм/с³"
 
 #~ msgid "Delete"
 #~ msgstr "Видалити"
-
-#~ msgid "Home"
-#~ msgstr "Домашня сторінка"
 
 #~ msgid "Off"
 #~ msgstr "Вимк"

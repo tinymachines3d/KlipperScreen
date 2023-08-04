@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KlipperScreen\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-07 07:02-0600\n"
+"POT-Creation-Date: 2023-07-31 02:01-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: AntoszHUN\n"
 "Language-Team: \n"
@@ -38,9 +38,6 @@ msgstr "Gyorsulás:"
 msgid "Accept"
 msgstr "Elfogad"
 
-msgid "Actions"
-msgstr "Műveletek"
-
 msgid "Add profile"
 msgstr "Profil hozzáadása"
 
@@ -49,11 +46,11 @@ msgstr "Alkalmaz"
 
 #, python-format
 msgid "Apply %s%.3f offset to Endstop?"
-msgstr ""
+msgstr "Alkalmazod a %s%.3f végpont eltolást?"
 
 #, python-format
 msgid "Apply %s%.3f offset to Probe?"
-msgstr ""
+msgstr "Alkalmazod a %s%.3f szonda eltolást?"
 
 msgid "Are you sure do you want to exclude the object?"
 msgstr "Biztosan kizárod az objektumot?"
@@ -104,7 +101,7 @@ msgid "Calibrating"
 msgstr "Kalibrálás"
 
 msgid "Camera"
-msgstr ""
+msgstr "Kamera"
 
 msgid "Can't set above the maximum:"
 msgstr "Nem állítható a maximum fölé:"
@@ -142,9 +139,6 @@ msgstr "Bezárás"
 msgid "Complete"
 msgstr "Befejezve"
 
-msgid "Configuration"
-msgstr "Konfiguráció"
-
 msgid "Confirm Emergency Stop"
 msgstr "Vészleállítás megerősítése"
 
@@ -164,11 +158,14 @@ msgstr "Folytat"
 msgid "Cooldown"
 msgstr "Lehűtés"
 
+msgid "DPMS has failed to load and has been disabled"
+msgstr ""
+
 msgid "Date"
 msgstr "Dátum"
 
 msgid "Delete Directory?"
-msgstr ""
+msgstr "Törlöd a könyvtárat?"
 
 msgid "Delete File?"
 msgstr "Fájl törlése?"
@@ -178,9 +175,6 @@ msgstr "Kijelölés törlése"
 
 msgid "Disable Motors"
 msgstr "Motorok letiltása"
-
-msgid "Disable XY"
-msgstr "XY Letiltása"
 
 msgid "Distance (mm)"
 msgstr "Távolság (mm)"
@@ -262,7 +256,7 @@ msgid "Full Update"
 msgstr "Teljes Frissítés"
 
 msgid "Fullscreen"
-msgstr ""
+msgstr "Teljes képernyő"
 
 msgid "Go Back"
 msgstr "Visszalépés"
@@ -282,6 +276,9 @@ msgstr "Hőfok szenzorok elrejtése."
 msgid "Hide temp."
 msgstr "Hőfok elrejtése"
 
+msgid "Home"
+msgstr "Kezdőpontok"
+
 msgid "Home All"
 msgstr "X-Y-Z kezdőpont"
 
@@ -297,9 +294,6 @@ msgstr "Y kezdőpont"
 msgid "Home Z"
 msgstr "Z kezdőpont"
 
-msgid "Homing"
-msgstr "Kezdőpont"
-
 msgid "Host"
 msgstr "Gazdagép"
 
@@ -311,6 +305,9 @@ msgstr "Ikon téma"
 
 msgid "Initializing printer..."
 msgstr "Nyomtató inicializálása..."
+
+msgid "Initiate a PID calibration for:"
+msgstr "PID-kalibráció kezdeményezése:"
 
 msgid "Input Shaper"
 msgstr "Bemeneti alakító"
@@ -332,6 +329,9 @@ msgstr "Fordított Y"
 
 msgid "Invert Z"
 msgstr "Fordított Z"
+
+msgid "It may take more than 5 minutes depending on the heater power."
+msgstr "A fűtés teljesítményétől függően több mint 5 percig tarthat."
 
 msgid "Klipper Restart"
 msgstr "Klipper Újraindítása"
@@ -423,6 +423,9 @@ msgstr "Módosított"
 msgid "Moonraker: connected"
 msgstr "Moonraker: csatlakoztatva"
 
+msgid "More"
+msgstr "Több"
+
 msgid "Move"
 msgstr "Mozgatás"
 
@@ -445,8 +448,8 @@ msgid ""
 "Not supported for auto-detection, it needs to be configured in klipperscreen."
 "conf"
 msgstr ""
-"Az automatikus felismerés nem támogatott, a klipperscreenben kell beállítani."
-"conf"
+"Az automatikus felismerés nem támogatott, a KlipperScreen-ben kell "
+"beállítani.conf"
 
 msgid "Nothing selected"
 msgstr "Nincs kiválasztva"
@@ -545,7 +548,7 @@ msgid "Refresh"
 msgstr "Frissítés"
 
 msgid "Rename/Move:"
-msgstr ""
+msgstr "Átnevez/Áthelyez:"
 
 msgid "Restart"
 msgstr "Újraindítás"
@@ -626,9 +629,6 @@ msgstr "Méret"
 msgid "Slicer"
 msgstr "Szeletelő"
 
-msgid "Slicer Time correction (%)"
-msgstr "Szeletelő idő javítása (%)"
-
 msgid "Slicer:"
 msgstr "Szeletelő:"
 
@@ -649,6 +649,9 @@ msgstr "Sebesség:"
 
 msgid "Square Corner Velocity"
 msgstr "Sebesség a sarkokban"
+
+msgid "Standby"
+msgstr ""
 
 msgid "Start"
 msgstr "Indítás"
@@ -743,8 +746,8 @@ msgstr[1] "órák"
 
 msgid "minute"
 msgid_plural "minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "perc"
+msgstr[1] "percek"
 
 msgid "mm"
 msgstr "mm"
@@ -757,6 +760,21 @@ msgstr "mm/s²"
 
 msgid "mm³/s"
 msgstr "mm³/s"
+
+#~ msgid "Actions"
+#~ msgstr "Műveletek"
+
+#~ msgid "Configuration"
+#~ msgstr "Konfiguráció"
+
+#~ msgid "Homing"
+#~ msgstr "Kezdőpont"
+
+#~ msgid "Disable XY"
+#~ msgstr "XY Letiltása"
+
+#~ msgid "Slicer Time correction (%)"
+#~ msgstr "Szeletelő idő javítása (%)"
 
 #~ msgid "Calibrated, save configuration to make it permanent"
 #~ msgstr "Kalibrálva! Mentsd el a konfigurációt, hogy az állandó legyen"
@@ -807,9 +825,6 @@ msgstr "mm³/s"
 
 #~ msgid "Delete"
 #~ msgstr "Töröl"
-
-#~ msgid "Home"
-#~ msgstr "Kezdőpontok"
 
 #~ msgid "Off"
 #~ msgstr "Ki"

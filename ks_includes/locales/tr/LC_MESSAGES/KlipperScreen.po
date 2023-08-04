@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-07 07:02-0600\n"
-"PO-Revision-Date: 2022-12-10 14:52+0300\n"
+"POT-Creation-Date: 2023-07-31 02:01-0300\n"
+"PO-Revision-Date: 2023-07-23 17:27+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: tr\n"
@@ -43,9 +43,6 @@ msgstr "Hızlanma:"
 msgid "Accept"
 msgstr "Kabul et"
 
-msgid "Actions"
-msgstr "Eylemler"
-
 msgid "Add profile"
 msgstr "Profil ekle"
 
@@ -54,11 +51,11 @@ msgstr "Uygula"
 
 #, python-format
 msgid "Apply %s%.3f offset to Endstop?"
-msgstr ""
+msgstr "Endstop'a %s%.3f ofset uygulansın mı?"
 
 #, python-format
 msgid "Apply %s%.3f offset to Probe?"
-msgstr ""
+msgstr "Prob'a %s%.3f ofset uygulansın mı?"
 
 msgid "Are you sure do you want to exclude the object?"
 msgstr "Nesneyi hariç tutmak istediğinizden emin misiniz?"
@@ -109,7 +106,7 @@ msgid "Calibrating"
 msgstr "Kalibre Ediliyor"
 
 msgid "Camera"
-msgstr ""
+msgstr "Kamera"
 
 msgid "Can't set above the maximum:"
 msgstr "Maksimumun üzerine ayarlanamaz:"
@@ -147,9 +144,6 @@ msgstr "Kapat"
 msgid "Complete"
 msgstr "Tamamlandı"
 
-msgid "Configuration"
-msgstr "Yapılandırma"
-
 msgid "Confirm Emergency Stop"
 msgstr "Acil Durdurmayı Onaylayın"
 
@@ -169,11 +163,14 @@ msgstr "Devam et"
 msgid "Cooldown"
 msgstr "Soğutma"
 
+msgid "DPMS has failed to load and has been disabled"
+msgstr ""
+
 msgid "Date"
 msgstr "Tarih"
 
 msgid "Delete Directory?"
-msgstr ""
+msgstr "Dizini Sil?"
 
 msgid "Delete File?"
 msgstr "Dosyayı Sil?"
@@ -183,9 +180,6 @@ msgstr "Seçimi kaldır"
 
 msgid "Disable Motors"
 msgstr "Motorları Devre Dışı Bırak"
-
-msgid "Disable XY"
-msgstr "XY Devre dışı bırak"
 
 msgid "Distance (mm)"
 msgstr "Uzaklık (mm)"
@@ -267,7 +261,7 @@ msgid "Full Update"
 msgstr "Tam Güncelleme"
 
 msgid "Fullscreen"
-msgstr ""
+msgstr "Tam Ekran"
 
 msgid "Go Back"
 msgstr "Geri git"
@@ -287,6 +281,9 @@ msgstr "Sıcaklıktaki sensörleri gizleyin."
 msgid "Hide temp."
 msgstr "Sıcaklığı gizle."
 
+msgid "Home"
+msgstr "Ana Ekran"
+
 msgid "Home All"
 msgstr "Eksenleri Sıfırla"
 
@@ -302,9 +299,6 @@ msgstr "Y Sıfırla"
 msgid "Home Z"
 msgstr "Z  Sıfırla"
 
-msgid "Homing"
-msgstr "Eksen Sıfırlama"
-
 msgid "Host"
 msgstr "Sunucu"
 
@@ -316,6 +310,9 @@ msgstr "Simge Teması"
 
 msgid "Initializing printer..."
 msgstr "Yazıcı başlatılıyor..."
+
+msgid "Initiate a PID calibration for:"
+msgstr "PID kalibrasyonu başlatın:"
 
 msgid "Input Shaper"
 msgstr "İvme Düzenleyicisi"
@@ -337,6 +334,9 @@ msgstr "Y Ters çevir"
 
 msgid "Invert Z"
 msgstr "Z Ters çevir"
+
+msgid "It may take more than 5 minutes depending on the heater power."
+msgstr "Isıtıcı gücüne bağlı olarak 5 dakikadan fazla sürebilir."
 
 msgid "Klipper Restart"
 msgstr "Klipper Yeniden başlat"
@@ -427,6 +427,9 @@ msgstr "Değiştirilmiş"
 
 msgid "Moonraker: connected"
 msgstr "Moonraker: bağlandı"
+
+msgid "More"
+msgstr "Daha"
 
 msgid "Move"
 msgstr "Hareket"
@@ -550,7 +553,7 @@ msgid "Refresh"
 msgstr "Yenile"
 
 msgid "Rename/Move:"
-msgstr ""
+msgstr "Yeniden Adlandır/Taşı:"
 
 msgid "Restart"
 msgstr "Yeniden Başlat"
@@ -631,9 +634,6 @@ msgstr "Boyut"
 msgid "Slicer"
 msgstr "Dilimleme"
 
-msgid "Slicer Time correction (%)"
-msgstr "Dilimleme Zamanı doğrulama (%)"
-
 msgid "Slicer:"
 msgstr "Dilimleyici:"
 
@@ -654,6 +654,9 @@ msgstr "Hız:"
 
 msgid "Square Corner Velocity"
 msgstr "Kare Köşe Hızı"
+
+msgid "Standby"
+msgstr ""
 
 msgid "Start"
 msgstr "Başlat"
@@ -748,8 +751,8 @@ msgstr[1] "saatler"
 
 msgid "minute"
 msgid_plural "minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "dakika"
+msgstr[1] "dakikalar"
 
 msgid "mm"
 msgstr "mm"
@@ -762,6 +765,21 @@ msgstr "mm/s²"
 
 msgid "mm³/s"
 msgstr "mm³/s"
+
+#~ msgid "Actions"
+#~ msgstr "Eylemler"
+
+#~ msgid "Configuration"
+#~ msgstr "Yapılandırma"
+
+#~ msgid "Homing"
+#~ msgstr "Eksen Sıfırlama"
+
+#~ msgid "Disable XY"
+#~ msgstr "XY Devre dışı bırak"
+
+#~ msgid "Slicer Time correction (%)"
+#~ msgstr "Dilimleme Zamanı doğrulama (%)"
 
 #~ msgid "Calibrated, save configuration to make it permanent"
 #~ msgstr "Kalibre edildi, kalıcı hale getirmek için yapılandırmayı kaydedin"
@@ -812,9 +830,6 @@ msgstr "mm³/s"
 
 #~ msgid "Delete"
 #~ msgstr "Sil"
-
-#~ msgid "Home"
-#~ msgstr "Ana Ekran"
 
 #~ msgid "Off"
 #~ msgstr "Kapa"

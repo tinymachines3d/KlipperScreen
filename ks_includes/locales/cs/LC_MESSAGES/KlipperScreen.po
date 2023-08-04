@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Czech\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-07 07:02-0600\n"
+"POT-Creation-Date: 2023-07-31 02:01-0300\n"
 "PO-Revision-Date: 2023-01-29 09:27-0600\n"
 "Last-Translator: \n"
 "Language-Team: Jan Stanka (stanky@email.cz)\n"
@@ -42,9 +42,6 @@ msgstr "Zrychlení:"
 
 msgid "Accept"
 msgstr "Přijmout"
-
-msgid "Actions"
-msgstr "Akce"
 
 msgid "Add profile"
 msgstr "Přidat profil"
@@ -147,9 +144,6 @@ msgstr "Zavřít"
 msgid "Complete"
 msgstr "Hotovo"
 
-msgid "Configuration"
-msgstr "Konfigurace"
-
 msgid "Confirm Emergency Stop"
 msgstr "Potvrzovat Emergency Stop"
 
@@ -169,6 +163,9 @@ msgstr "Pokračuj"
 msgid "Cooldown"
 msgstr "Zchladit"
 
+msgid "DPMS has failed to load and has been disabled"
+msgstr ""
+
 msgid "Date"
 msgstr "Datum"
 
@@ -183,9 +180,6 @@ msgstr "Odznačit"
 
 msgid "Disable Motors"
 msgstr "Uvolnit motory"
-
-msgid "Disable XY"
-msgstr "Uvolnit XY"
 
 msgid "Distance (mm)"
 msgstr "Vzdálenost (mm)"
@@ -287,6 +281,9 @@ msgstr "Skrýt senzory v Temp."
 msgid "Hide temp."
 msgstr "Skrýt teplotu"
 
+msgid "Home"
+msgstr ""
+
 msgid "Home All"
 msgstr "Zaparkovat XYZ"
 
@@ -302,9 +299,6 @@ msgstr "Zaparkovat Y"
 msgid "Home Z"
 msgstr "Zaparkovat Z"
 
-msgid "Homing"
-msgstr "Domů"
-
 msgid "Host"
 msgstr "Host"
 
@@ -316,6 +310,9 @@ msgstr "Sada ikon"
 
 msgid "Initializing printer..."
 msgstr "Startuji tiskárnu ..."
+
+msgid "Initiate a PID calibration for:"
+msgstr ""
 
 msgid "Input Shaper"
 msgstr ""
@@ -337,6 +334,9 @@ msgstr "Otočit Y"
 
 msgid "Invert Z"
 msgstr "Otočit Z"
+
+msgid "It may take more than 5 minutes depending on the heater power."
+msgstr ""
 
 msgid "Klipper Restart"
 msgstr "Klipper Restart"
@@ -427,6 +427,9 @@ msgstr "Změněno"
 
 msgid "Moonraker: connected"
 msgstr "Moonraker: připojen"
+
+msgid "More"
+msgstr ""
 
 msgid "Move"
 msgstr "Posun"
@@ -630,9 +633,6 @@ msgstr "Velikost"
 msgid "Slicer"
 msgstr "Slicer"
 
-msgid "Slicer Time correction (%)"
-msgstr "Časová korekce Sliceru  (%)"
-
 msgid "Slicer:"
 msgstr "Slicer:"
 
@@ -652,6 +652,9 @@ msgid "Speed:"
 msgstr "Rychlost:"
 
 msgid "Square Corner Velocity"
+msgstr ""
+
+msgid "Standby"
 msgstr ""
 
 msgid "Start"
@@ -764,6 +767,21 @@ msgstr "mm/s²"
 
 msgid "mm³/s"
 msgstr "mm³/s"
+
+#~ msgid "Actions"
+#~ msgstr "Akce"
+
+#~ msgid "Configuration"
+#~ msgstr "Konfigurace"
+
+#~ msgid "Homing"
+#~ msgstr "Domů"
+
+#~ msgid "Disable XY"
+#~ msgstr "Uvolnit XY"
+
+#~ msgid "Slicer Time correction (%)"
+#~ msgstr "Časová korekce Sliceru  (%)"
 
 #~ msgid "Calibrated, save configuration to make it permanent"
 #~ msgstr "Zkalibrováno, uložit změny jako trvalé"

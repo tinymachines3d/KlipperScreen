@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-07 07:02-0600\n"
+"POT-Creation-Date: 2023-07-31 02:01-0300\n"
 "PO-Revision-Date: 2022-11-21 21:31-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -42,9 +42,6 @@ msgstr ""
 
 msgid "Accept"
 msgstr "Godkänn"
-
-msgid "Actions"
-msgstr "Åtgärder"
 
 msgid "Add profile"
 msgstr ""
@@ -147,9 +144,6 @@ msgstr "Stäng"
 msgid "Complete"
 msgstr "Färdig"
 
-msgid "Configuration"
-msgstr "Konfiguration"
-
 msgid "Confirm Emergency Stop"
 msgstr "Bekräfta nödstopp"
 
@@ -169,6 +163,9 @@ msgstr "Fortsätt"
 msgid "Cooldown"
 msgstr "Nedkylning"
 
+msgid "DPMS has failed to load and has been disabled"
+msgstr ""
+
 msgid "Date"
 msgstr "Datum"
 
@@ -183,9 +180,6 @@ msgstr "Avmarkera"
 
 msgid "Disable Motors"
 msgstr "Inaktivera motorer"
-
-msgid "Disable XY"
-msgstr "Inaktivera XY"
 
 msgid "Distance (mm)"
 msgstr "Avstånd (mm)"
@@ -287,6 +281,9 @@ msgstr "Dölj sensorer i Temp."
 msgid "Hide temp."
 msgstr ""
 
+msgid "Home"
+msgstr "Hem"
+
 msgid "Home All"
 msgstr "Hem Alla"
 
@@ -302,9 +299,6 @@ msgstr "Hem Y"
 msgid "Home Z"
 msgstr "Hem Z"
 
-msgid "Homing"
-msgstr ""
-
 msgid "Host"
 msgstr ""
 
@@ -316,6 +310,9 @@ msgstr "Ikon tema"
 
 msgid "Initializing printer..."
 msgstr "Initierar skrivaren..."
+
+msgid "Initiate a PID calibration for:"
+msgstr ""
 
 msgid "Input Shaper"
 msgstr ""
@@ -337,6 +334,9 @@ msgstr "Invertera Y"
 
 msgid "Invert Z"
 msgstr "Invertera Z"
+
+msgid "It may take more than 5 minutes depending on the heater power."
+msgstr ""
 
 msgid "Klipper Restart"
 msgstr "Klipper Omstart"
@@ -427,6 +427,9 @@ msgstr "Ändrad"
 
 msgid "Moonraker: connected"
 msgstr "Moonraker: ansluten"
+
+msgid "More"
+msgstr ""
 
 msgid "Move"
 msgstr "Flytta"
@@ -629,9 +632,6 @@ msgstr "Storlek"
 msgid "Slicer"
 msgstr ""
 
-msgid "Slicer Time correction (%)"
-msgstr ""
-
 msgid "Slicer:"
 msgstr ""
 
@@ -651,6 +651,9 @@ msgid "Speed:"
 msgstr ""
 
 msgid "Square Corner Velocity"
+msgstr ""
+
+msgid "Standby"
 msgstr ""
 
 msgid "Start"
@@ -761,6 +764,15 @@ msgstr "mm/s²"
 msgid "mm³/s"
 msgstr ""
 
+#~ msgid "Actions"
+#~ msgstr "Åtgärder"
+
+#~ msgid "Configuration"
+#~ msgstr "Konfiguration"
+
+#~ msgid "Disable XY"
+#~ msgstr "Inaktivera XY"
+
 #~ msgid "Calibrated, save configuration to make it permanent"
 #~ msgstr "Kalibrerad, spara konfiguration för att göra den permanent"
 
@@ -800,9 +812,6 @@ msgstr ""
 
 #~ msgid "Delete"
 #~ msgstr "Radera"
-
-#~ msgid "Home"
-#~ msgstr "Hem"
 
 #~ msgid "Off"
 #~ msgstr "Avstängd"
