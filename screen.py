@@ -406,6 +406,7 @@ class KlipperScreen(Gtk.Window):
                 widget.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR)
                 widget.set_max_width_chars(40)
         msg.connect("clicked", self.close_popup_message)
+        msg.connect("pressed", self._button_pressed_feedback)
         msg.get_style_context().add_class("message_popup")
         if level == 1:
             msg.get_style_context().add_class("message_popup_echo")
@@ -502,6 +503,9 @@ class KlipperScreen(Gtk.Window):
             Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
         )
 
+    def _button_pressed_feedback(self, widget=None):
+        os.system('/etc/scripts/ks_click.sh')
+    
     def load_custom_theme(self, theme_name):
         theme_dir = os.path.join(klipperscreendir, "styles", theme_name)
         theme_css_path = os.path.join(theme_dir, "style.css")
