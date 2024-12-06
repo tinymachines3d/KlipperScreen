@@ -181,6 +181,7 @@ class KlippyGtk:
         if style is not None:
             b.get_style_context().add_class(style)
         b.connect("clicked", self.screen.screensaver.reset_timeout)
+        b.connect("pressed", self.screen._button_pressed_feedback)
         return b
 
     @staticmethod
@@ -227,6 +228,7 @@ class KlippyGtk:
                 style = button['style'] if 'style' in button else 'dialog-default'
                 dialog.add_button(button['name'], button['response'])
                 button = dialog.get_widget_for_response(button['response'])
+                button.connect("pressed", self.screen._button_pressed_feedback)
                 button.set_size_request(button_hsize, self.dialog_buttons_height)
                 button.get_style_context().add_class(style)
                 format_label(button, 2)
