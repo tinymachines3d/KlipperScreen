@@ -506,7 +506,6 @@ class KlipperScreen(Gtk.Window):
     def _button_pressed_feedback(self, widget=None):
         os.system('/boot/scripts/ks_click.sh')
         os.system('/etc/scripts/ks_click.sh')
-    
     def load_custom_theme(self, theme_name):
         theme_dir = os.path.join(klipperscreendir, "styles", theme_name)
         theme_css_path = os.path.join(theme_dir, "style.css")
